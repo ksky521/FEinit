@@ -25,6 +25,7 @@ FEinit beta版
     "grunt-contrib-qunit": "~0.2.0",
     "grunt-contrib-livereload": "~0.1.2"
 }
+```
 
 然后进入init文件夹执行
 
