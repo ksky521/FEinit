@@ -1,0 +1,19 @@
+[Version]
+Signature="$CHICAGO$"
+Provider=ksky521@gmail.com, 2012
+
+[DefaultInstall]
+AddReg=Install_AddReg
+
+[DefaultUnInstall]
+DelReg=Uninstall_DelReg
+
+[Uninstall_DelReg]
+hkcr,"*\Shell\Compass"
+
+[Install_AddReg]
+hkcr,"Folder\Shell\Compass",,,"初始化FE项目"
+hkcr,"Folder\Shell\Compass\command",,,"""%01%\init.cmd"" ""%%1""
+
+
+

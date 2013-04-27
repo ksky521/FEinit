@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+# 根目录下js css也包括
+RewriteRule ^([\S+\/]+)\.(js|css)$  import.php?f=$1&type=$2  [L,NE]
+# 不包括根目录下js 和css 文件
+#RewriteRule ^(\w+\/[\w+\/]+)\.(js|css)$  import.php?f=$1&type=$2  [L,NE]
+</IfModule>

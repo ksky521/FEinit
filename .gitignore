@@ -12,3 +12,18 @@ logs
 results
 
 npm-debug.log
+/init/node_modules/grunt-contrib-connect
+/init/node_modules/grunt-contrib-htmlmin
+/init/node_modules/grunt-contrib-imagemin
+/init/node_modules/grunt-contrib-jshint
+/init/node_modules/grunt-contrib-qunit
+/init/node_modules/grunt-contrib-uglify
+/init/node_modules/grunt-contrib-watch
+/init/node_modules/grunt-imagine
+/init/node_modules/grunt-livereload
+/init/node_modules/grunt-regarde
+/init/node_modules/.bin
+/init/node_modules/grunt
+/init/node_modules/grunt-connect
+/init/node_modules/grunt-contrib-compass
+/init/node_modules/grunt-contrib-concat
