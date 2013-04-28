@@ -1,0 +1,10 @@
+Please answer the following:
+[?] Project name (foo) | name
+[?] Description (The best project ever.) | description
+[?] Version (0.1.0) | version
+[?] Author name (USER_NAME) | userName
+[?] Author email (USER_EMAIL) | userEmail
+
+
+[?] Do you need to force an update on master repo? (y/N) | force_update
+[?] Which layout ? ([D]efault, [C]ustom, [S]illy) | layout

@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var join = require('path').join;
+
+var root = join(__dirname, './');
+
+var FE = require(root+'/lib/FEinit');
+
+FE.parseCmd();
+FE.prompt();

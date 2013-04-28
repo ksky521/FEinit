@@ -1,0 +1,8 @@
+{
+  "name": "FEinit",
+  "main": "./FEinit.js",
+  "author": "TheoWang",
+  "dependencies": {
+    "read": "~1.0.4"
+  }
+}

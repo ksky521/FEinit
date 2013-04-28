@@ -9,6 +9,10 @@ SETLOCAL ENABLEEXTENSIONS
 echo.
 echo 初始化web项目 0.1 Author Theowang
 
+:FEinit
+node fe
+goto End
+
 :copyFile
 echo.
 echo 拷贝数据。。。

@@ -27,3 +27,6 @@ npm-debug.log
 /init/node_modules/grunt-connect
 /init/node_modules/grunt-contrib-compass
 /init/node_modules/grunt-contrib-concat
+/test
+/init/node_modules
+/lib/node_modules
