@@ -26,10 +26,16 @@ if (cmds.indexOf('--help') !== -1) {
 if (cmds.indexOf('--version') !== -1) {
     return console.log('fe v%s', require('../package.json').version);
 }
-
+var findup = require('findup-sync');
+var exeRoute = findup('./');
 if (cmds.indexOf('init') !== -1) {
-    var findup = require('findup-sync');
-    var exeRoute = findup('./');
     var FE = require(root + '/lib/FEinit');
     FE.init(exeRoute).start();
+    return;
 }
+
+var grunt = require('grunt');
+grunt.loadTasks(root+'/tasks');
+// console.log(grunt.task);
+// return;
+grunt.task.run(['test:'+exeRoute]).start();
