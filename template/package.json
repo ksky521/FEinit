@@ -1,7 +1,6 @@
 {
     "name": "<%=$name%>",
     "description": "<%=description%>",
-    "version": "<%=version%>",
     "author": "<%=userName%>",
     "email": "<%=userEmail%>",
     "devDependencies": {

@@ -1,8 +1,5 @@
 Please answer the following:
 [?] Project name (foo) | name
 [?] Description (The best project ever.) | description
-[?] Version (0.1.0) | version
 [?] Author name (USER_NAME) | userName
 [?] Author email (USER_EMAIL) | userEmail
-
-

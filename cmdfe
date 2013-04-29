@@ -9,5 +9,4 @@ var cmds = cli.tasks,
 var root = join(__dirname, './');
 
 var FE = require(root + '/lib/FEinit');
-
 FE.init(route).start();
