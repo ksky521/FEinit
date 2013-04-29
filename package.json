@@ -6,6 +6,11 @@
     },
     "dependencies": {
         "grunt": "~0.4.1",
-        "grunt-init": "~0.2.0"
+        "grunt-init": "~0.2.0",
+        "nopt": "~1.0.10",
+        "read": "~1.0.4",
+        "grunt-init": "~0.2.0",
+        "lodash": "~1.2.0",
+        "findup-sync":"~0.1.2"
     }
 }

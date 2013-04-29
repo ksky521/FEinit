@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var fs = require('fs');
+var nopt = require('nopt');
 var join = require('path').join;
 var help = join(__dirname, 'help.txt');
 var path = require('path');
@@ -9,25 +10,27 @@ var path = require('path');
 // var cmds = cli.tasks,
 //     route = cmds.join(' ').trim('');
 
-var route = process.argv.slice(2);
-route = route.join(' ').trim('');
-
+var opts = nopt({
+    help: Boolean
+}, {
+    h: '--help',
+    v: '--version'
+});
+var cmds = opts.argv.cooked;
 var root = join(__dirname, '../');
 
-if (/^help/.test(route)) {
-    if (/^help$/.test(route)) {
-        return fs.createReadStream(help).pipe(process.stdout);
-    }
-
+if (cmds.indexOf('--help') !== -1) {
+    return fs.createReadStream(help).pipe(process.stdout);
 }
 
-if (/-v|version/.test(route)) {
-    console.log('121');
-    console.log('fe  v%s', require('../package.json').version);
+if (cmds.indexOf('--version') !== -1) {
+    return console.log('fe v%s', require('../package.json').version);
 }
 
-if (/^init$/.test(route)) {
-    var exeRoute = path.dirname(process.argv[1]) + '/';
+if (cmds.indexOf('init') !== -1) {
+    console.log(findup('./'));
+    return;
+    var exeRoute = findup('./');
     var FE = require(root + '/lib/FEinit');
     FE.init(exeRoute).start();
 }
