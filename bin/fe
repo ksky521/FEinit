@@ -3,9 +3,10 @@
 var fs = require('fs');
 var nopt = require('nopt');
 var join = require('path').join;
-var help = join(__dirname, 'help.txt');
+var help = join(__dirname, 'help.txt'); //帮助文件
+var config = join(__dirname, '../', 'config.json'); //默认配置文件
 var path = require('path');
-
+var grunt = require('grunt');
 // var cli = require('../lib/node_modules/grunt/lib/grunt/cli');
 // var cmds = cli.tasks,
 //     route = cmds.join(' ').trim('');
@@ -19,13 +20,45 @@ var opts = nopt({
 var cmds = opts.argv.cooked;
 var root = join(__dirname, '../');
 
+//显示帮助
 if (cmds.indexOf('--help') !== -1) {
     return fs.createReadStream(help).pipe(process.stdout);
 }
-
+//显示版本
 if (cmds.indexOf('--version') !== -1) {
     return console.log('fe v%s', require('../package.json').version);
 }
+//config 命令
+var str = cmds.join(' ');
+if (str === 'config list') {
+    return fs.createReadStream(config).pipe(process.stdout);
+} else if (str.indexOf('config get') === 0) {
+    cmds = cmds.slice(2);
+    var json = require(config);
+    var isArray = require('util').isArray;
+    cmds.forEach(function(v) {
+        var str = function(s) {
+            if (isArray(s) || typeof s === 'object') {
+                return JSON.stringify(s, null, 4);
+
+            }
+            return s;
+        }(json[v]);
+        console.log(v + '==>\n' + str);
+    });
+    return;
+}else if (str === 'config edit') {
+    var spawn = require('child_process').spawn;
+    // spawn('notepad',[config]);
+    spawn('explorer',[config]);
+    return;
+}else if (str === 'config open') {
+    var spawn = require('child_process').spawn;
+    spawn('explorer',[config]);
+    return;
+}
+
+//调用tasks里面的grunt任务
 var findup = require('findup-sync');
 var exeRoute = findup('./');
 if (cmds.indexOf('init') !== -1) {
@@ -35,7 +68,7 @@ if (cmds.indexOf('init') !== -1) {
 }
 
 var grunt = require('grunt');
-grunt.loadTasks(root+'/tasks');
+grunt.loadTasks(root + '/tasks');
 // console.log(grunt.task);
 // return;
-grunt.task.run(['test:'+exeRoute]).start();
+grunt.task.run(['test:' + exeRoute]).start();
