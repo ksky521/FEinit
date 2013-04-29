@@ -28,8 +28,7 @@ if (cmds.indexOf('--version') !== -1) {
 }
 
 if (cmds.indexOf('init') !== -1) {
-    console.log(findup('./'));
-    return;
+    var findup = require('findup-sync');
     var exeRoute = findup('./');
     var FE = require(root + '/lib/FEinit');
     FE.init(exeRoute).start();
