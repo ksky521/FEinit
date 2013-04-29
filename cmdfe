@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var join = require('path').join;
+
+var cli =  require('grunt/lib/grunt/cli');
+var cmds = cli.tasks,
+   route = cmds.join(' ').trim('');
+var root = join(__dirname, './');
+
+var FE = require(root + '/lib/FEinit');
+
+FE.init(route).start();

@@ -1,8 +1,10 @@
 {
-  "name": "FEinit",
-  "main": "./FEinit.js",
-  "author": "TheoWang",
-  "dependencies": {
-    "read": "~1.0.4"
-  }
+    "name": "FEinit",
+    "main": "./FEinit.js",
+    "author": "TheoWang",
+    "dependencies": {
+        "read": "~1.0.4",
+        "grunt-init": "~0.2.0",
+        "lodash": "~1.2.0"
+    }
 }

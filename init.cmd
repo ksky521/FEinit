@@ -10,7 +10,7 @@ echo.
 echo 初始化web项目 0.1 Author Theowang
 
 :FEinit
-node fe
+node cmdfe "%~dpf1"
 goto End
 
 :copyFile

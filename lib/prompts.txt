@@ -6,5 +6,3 @@ Please answer the following:
 [?] Author email (USER_EMAIL) | userEmail
 
 
-[?] Do you need to force an update on master repo? (y/N) | force_update
-[?] Which layout ? ([D]efault, [C]ustom, [S]illy) | layout
