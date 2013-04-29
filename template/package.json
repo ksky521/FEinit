@@ -1,8 +1,8 @@
 {
-    "name": "<%=$name%>",
-    "description": "<%=description%>",
-    "author": "<%=userName%>",
-    "email": "<%=userEmail%>",
+    "name": "<%= name %>",
+    "description": "<%= description %>",
+    "author": "<%= userName %>",
+    "email": "<%= userEmail %>",
     "devDependencies": {
         "grunt": "~0.4.1",
         "grunt-contrib-jshint": "~0.2.0",

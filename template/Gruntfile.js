@@ -33,6 +33,7 @@ module.exports = function(grunt) {
       },
       files: ['src/**/*']
     },
+    <% if (Sass=='y' || Sass=='Y') { %>
     compass: {
       dev: {
         options: {
@@ -47,6 +48,8 @@ module.exports = function(grunt) {
         }
       }
     },
+    <% } %>
+    
     concat: {
       options: {
         separator: ';\n'
@@ -55,12 +58,10 @@ module.exports = function(grunt) {
         // the files to concatenate
         src: ['src/js/zepto.js'],
         // the location of the resulting JS file
-        dest: 'src/js/<%= pkg.name %>.js'
       }
     },
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> by <%= pkg.author %> */\n'
       },
       dist: {
         src: 'src/js/touch.js',
