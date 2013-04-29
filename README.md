@@ -4,6 +4,7 @@ FEinit beta版
 2、clean不用内容
 3、压缩合并文件
 4、图片优化
+5、FE config
 
 初始化FE项目文件夹的工具
 
