@@ -1,6 +1,17 @@
 {
     "name": "FEinit",
     "version": "0.1.0",
+    "description": "A tool for create Front-end projects",
+    "author": {
+        "name": "Theo Wang",
+        "website": "http://js8.in"
+    },
+    "homepage": "https://github.com/ksky521/FEinit",
+    "bugs": "https://github.com/ksky521/FEinit/issues",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/ksky521/FEinit.git"
+    },
     "bin": {
         "fe": "bin/fe"
     },
@@ -14,8 +25,8 @@
         "findup-sync": "~0.1.2",
         "colors": "~0.6.0-1"
     },
-    "scripts":{
-        "install":"./bin/install",
-        "postuninstall":"./bin/uninstall"
+    "scripts": {
+        "install": "node ./bin/install",
+        "uninstall": "node ./bin/uninstall"
     }
 }

@@ -22,7 +22,22 @@ var root = join(__dirname, '../');
 
 //显示帮助
 if (cmds.indexOf('--help') !== -1) {
-    return fs.createReadStream(help).pipe(process.stdout);
+    var txt = fs.readFileSync(help, 'utf-8').toString();
+    var lines = txt.split(/\n/);
+    var reg = /\[(.*?)\]\((.*?)\)/g;
+    lines.map(function(line) {
+        // console.log(line);
+        var m = line.replace(reg, function(match, _1, _2, l) {
+            var c = _2.split('.');
+            var back = _1;
+            c.map(function(v){
+                back = back[v];
+            });
+            return back;
+        });
+        console.log(m)
+    });
+    return;
 }
 //显示版本
 if (cmds.indexOf('--version') !== -1) {
@@ -47,14 +62,25 @@ if (str === 'config list') {
         console.log(v + '==>\n' + str);
     });
     return;
-}else if (str === 'config edit') {
+} else if (str === 'config edit') {
     var spawn = require('child_process').spawn;
     // spawn('notepad',[config]);
-    spawn('explorer',[config]);
+    spawn('explorer', [config]);
     return;
-}else if (str === 'config open') {
+} else if (str === 'config open') {
     var spawn = require('child_process').spawn;
-    spawn('explorer',[config]);
+    spawn('explorer', [config]);
+    return;
+} else if (str === 'task list') {
+    var files = fs.readdirSync(root + '/tasks');
+    files.forEach(function(file) {
+        var pathname = root + '/tasks/' + file,
+            stat = fs.lstatSync(pathname);
+
+        if (!stat.isDirectory() && /\.js$/.test(file)) {
+            console.log(' * ' + file.slice(0, -3).bold.yellow);
+        }
+    });
     return;
 }
 
@@ -71,4 +97,4 @@ var grunt = require('grunt');
 grunt.loadTasks(root + '/tasks');
 // console.log(grunt.task);
 // return;
-grunt.task.run(['test:' + exeRoute]).start();
+grunt.task.run(cmds).start();

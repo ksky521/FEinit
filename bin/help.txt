@@ -1,1 +1,23 @@
-i am help.txt
+    _____________________________________________
+   |    [ ______ ______   _       _ _   ](bold.green)          |
+   |    [|  ____|  ____| (_)     (_) |  ](bold.green)          |
+   |    [| |__  | |__     _ _ __  _| |_ ](bold.green)          |
+   |    [|  __| |  __|   | | '_ \| | __|](bold.green)          |
+   |    [| |    | |____  | | | | | | |_ ](bold.green)          |
+   |    [|_|    |______| |_|_| |_|_|\__|](bold.green) [v0.1.0](bold.yellow)   |
+   |                                             |
+   |         基于 [grunt](rainbow.bold) 的[FE](bold.red)解决方案             |
+   |_____________________________________________|
+
+
+   ===============使用方法===============
+
+ * [fe init](green)：将当前目录初始化为前端项目文件夹，需要输入项目名称等内容
+ * [fe config list](green)：显示fe的config文件内容
+       [download](yellow)：是否通过下载添加grunt模块
+       [dependencies](yellow)：默认的依赖模块
+       [dirs](yellow)：目录结构
+       [files](yellow)：选择是否include之后要create的文件
+ * [fe config edit](green)：编辑config文件，会调用explorer config.json
+ * [fe task-name](green)：要执行的grunt任务
+ * [fe task list](green)：列出支持的grunt task

@@ -1,15 +1,7 @@
 FEinit beta版
 ======
-1、打压缩包
-2、clean不用内容
-3、压缩合并文件
-4、图片优化
-5、FE config
-
-初始化FE项目文件夹的工具
-
-基于Grunt和compass的前端项目初始化工具集。
-
+基于Grunt和compass的前端项目初始化工具集，因为是在windows系统开发，所以目前仅适合 __windows__ 系统。
+ 
     FFFFFFFFFFFFFFFFFFFFFFEEEEEEEEEEEEEEEEEEEEEE       iiii                     iiii          tttt          
     F::::::::::::::::::::FE::::::::::::::::::::E      i::::i                   i::::i      ttt:::t          
     F::::::::::::::::::::FE::::::::::::::::::::E       iiii                     iiii       t:::::t          
@@ -27,65 +19,61 @@ FEinit beta版
     F::::::::FF           E::::::::::::::::::::E     i::::::i n::::n    n::::ni::::::i       tt:::::::::::tt
     FFFFFFFFFFF           EEEEEEEEEEEEEEEEEEEEEE     iiiiiiii nnnnnn    nnnnnniiiiiiii         ttttttttttt  
 
+## 安装
 
-## 使用方法
+```shell
+npm install -g FEinit
+```
+or
 
-进入init文件夹，添加常用的Grunt插件。
+```shell
+npm install http://github.com/ksky521/FEinit/tarball/master -g
+fe --help
+```
+__P.S.__：安装最后会选择是否添加鼠标右键功能
 
-### 修改pack.json添加
-```javascript
-"devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.2.0",
-    "grunt-contrib-uglify": "~0.1.2",
-    "grunt-contrib-nodeunit": "~0.1.2",
-    "grunt-contrib": "~0.5.0",
-    "grunt-contrib-concat": "~0.1.3",
-    "grunt-contrib-compass": "~0.1.3",
-    "grunt-contrib-htmlmin": "~0.1.1",
-    "grunt-contrib-watch": "~0.3.1",
-    "grunt-contrib-imagemin": "~0.1.2",
-    "grunt-contrib-qunit": "~0.2.0",
-    "grunt-contrib-livereload": "~0.1.2"
-}
+## 使用
+ * 第一种方法：鼠标右键选择要创建项目的文件夹，选择【初始化FE】，然后按照提示完成项目的创建过程
+ * 第二种方法：cmd进入要创建项目的文件夹，执行：
+```shell
+fe init
 ```
 
-然后进入init文件夹执行
+### fe -h
+查看帮助文件
 
-    npm install
+### fe tasks
+还在开发中...
 
-### 直接使用npm安装
-
-    npm install grunt-plugins-name --save-dev
-
-### 修改init/src文件目录结构，默认的结构如下
+### 项目的src文件夹默认结构如下
 
     │  index.html             //首页
     │
     ├─img                    //图片
     │  └─pic                 //切图临时占位图片       
     ├─js                     //js文件夹
-    │      .htaccess
-    │      broadcast.js
-    │      hammer.js
-    │      import.php
     │      jquery.1.4.2.js 
     │      jquery.1.8.2.js    
-    │      mix.js
-    │      template.js
     │      zepto.js
     │
     └─sass                   //compass sass文件夹
             _base.scss       //compass bass文件
 
-### 安装
+## 二次开发
+支持二次开发和DIY的grunt task。
 
-运行install.cmd
+git本项目，然后需要添加的grunt任务文件，添加到tasks文件夹下即可。
 
-### 卸载
+0.1.0版本尚未添加tasks，只有个test……还在努力coding中
 
-运行uninstall.cmd
+命令
+```shell
+fe task list
+```
+可以显示所有支持的grunt task列表
 
-### 初始化项目
 
-右键要初始化的项目文件夹，选择【初始化FE项目】，会自动调起cmd，复制文件，然后执行compass初始化
+## 卸载
+```shell
+npm uninstall -g FEinit
+```
