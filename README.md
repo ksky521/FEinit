@@ -6,7 +6,8 @@ FEinit beta版
 
 ```shell
 npm install http://github.com/ksky521/FEinit/tarball/master -g
-fe --help
+fe -h
+fe -v
 ```
 __P.S.__：安装最后会选择是否添加鼠标右键功能
 
@@ -14,7 +15,7 @@ __P.S.__：安装最后会选择是否添加鼠标右键功能
  * 第一种方法：鼠标右键选择要创建项目的文件夹，选择【初始化FE】，然后按照提示完成项目的创建过程
  * 第二种方法：cmd进入要创建项目的文件夹，执行：```fe init```
 
-### fe -h
+### fe -h or fe --help
 查看帮助文件
 
 ### fe tasks
