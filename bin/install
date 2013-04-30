@@ -35,7 +35,7 @@ function installInitModules(){
         process.stdout.write('NOTE'.green + ': ' + data);
     });
     child.stderr.on('data', function(data) {
-        process.stdout.write('ERROR'.red + ': ' + data);
+        // process.stdout.write('ERROR'.red + ': ' + data);
     });
     child.on('exit', function(){
         console.log('Done, Install Success!'.bold.green);
