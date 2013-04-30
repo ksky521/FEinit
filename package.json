@@ -1,19 +1,32 @@
 {
-    "name": "",
-    "description": "",
-    "author": "",
-    "email": "",
-    "devDependencies": {
+    "name": "FEinit",
+    "version": "0.1.0",
+    "description": "A tool for create Front-end projects",
+    "author": {
+        "name": "Theo Wang",
+        "website": "http://js8.in"
+    },
+    "homepage": "https://github.com/ksky521/FEinit",
+    "bugs": "https://github.com/ksky521/FEinit/issues",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/ksky521/FEinit.git"
+    },
+    "bin": {
+        "fe": "bin/fe"
+    },
+    "dependencies": {
         "grunt": "~0.4.1",
-        "grunt-contrib-jshint": "~0.2.0",
-        "grunt-contrib-uglify": "~0.1.2",
-        "grunt-contrib": "~0.5.0",
-        "grunt-contrib-concat": "~0.1.3",
-        "grunt-contrib-compass": "~0.1.3",
-        "grunt-contrib-htmlmin": "~0.1.1",
-        "grunt-contrib-watch": "~0.3.1",
-        "grunt-contrib-imagemin": "~0.1.2",
-        "grunt-contrib-qunit": "~0.2.0",
-        "grunt-contrib-livereload": "~0.1.2"
+        "grunt-init": "~0.2.0",
+        "nopt": "~1.0.10",
+        "read": "~1.0.4",
+        "grunt-init": "~0.2.0",
+        "lodash": "~1.2.0",
+        "findup-sync": "~0.1.2",
+        "colors": "~0.6.0-1"
+    },
+    "scripts": {
+        "install": "node ./bin/install",
+        "uninstall": "node ./bin/uninstall"
     }
 }
