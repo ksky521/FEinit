@@ -17,5 +17,3 @@ hkcr,"Folder\Shell\FEinit\command"
 hkcr,"Folder\Shell\FEinit",,,"≥ı ºªØFE"
 hkcr,"Folder\Shell\FEinit\command",,,"""%01%\init.cmd"" ""%%1""
 
-
-

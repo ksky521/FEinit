@@ -1,5 +1,5 @@
-Please answer the following:
-[?] Project name (foo) | name
-[?] Description (The best project ever.) | description
-[?] Author name (USER_NAME) | userName
-[?] Author email (USER_EMAIL) | userEmail
+请回答下面的问题:
+[?] 项目名称 (feinit) | name
+[?] 项目描述 (The best project ever.) | description
+[?] 作者名 (Theowang) | userName
+[?] Email地址 (ksky521@gmail.com) | userEmail

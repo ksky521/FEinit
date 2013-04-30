@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
 var execFile = require('child_process').execFile;
+var spawn = require('child_process').spawn;
 var join = require('path').join;
 var root = join(__dirname, '../');
 var read = require('read');
 var colors = require('colors');
 read({
-    prompt: '['+'?'.bold.green+'] Would you like to add FE mouse menu ?[Y/n]',
+    prompt: '['+'?'.bold.green+'] 添加FEinit到鼠标右键 ?[Y/n]',
     default: 'n',
     timeout: 100000
 }, function(err, value) {
@@ -23,3 +24,5 @@ read({
         })
     }
 });
+
+spawn('cd init && npm install');
