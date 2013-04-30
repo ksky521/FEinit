@@ -25,4 +25,4 @@ read({
     }
 });
 
-spawn('cd init && npm install');
+spawn('/c cd init && npm install',[]);
