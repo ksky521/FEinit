@@ -2,22 +2,13 @@ FEinit beta版
 ======
 基于Grunt和compass的前端项目初始化工具集，因为是在windows系统开发，所以目前仅适合 __windows__ 系统。
  
-    FFFFFFFFFFFFFFFFFFFFFFEEEEEEEEEEEEEEEEEEEEEE       iiii                     iiii          tttt          
-    F::::::::::::::::::::FE::::::::::::::::::::E      i::::i                   i::::i      ttt:::t          
-    F::::::::::::::::::::FE::::::::::::::::::::E       iiii                     iiii       t:::::t          
-    FF::::::FFFFFFFFF::::FEE::::::EEEEEEEEE::::E                                           t:::::t          
-      F:::::F       FFFFFF  E:::::E       EEEEEE     iiiiiiinnnn  nnnnnnnn    iiiiiiittttttt:::::ttttttt    
-      F:::::F               E:::::E                  i:::::in:::nn::::::::nn  i:::::it:::::::::::::::::t    
-      F::::::FFFFFFFFFF     E::::::EEEEEEEEEE         i::::in::::::::::::::nn  i::::it:::::::::::::::::t    
-      F:::::::::::::::F     E:::::::::::::::E         i::::inn:::::::::::::::n i::::itttttt:::::::tttttt    
-      F:::::::::::::::F     E:::::::::::::::E         i::::i  n:::::nnnn:::::n i::::i      t:::::t          
-      F::::::FFFFFFFFFF     E::::::EEEEEEEEEE         i::::i  n::::n    n::::n i::::i      t:::::t          
-      F:::::F               E:::::E                   i::::i  n::::n    n::::n i::::i      t:::::t          
-      F:::::F               E:::::E       EEEEEE      i::::i  n::::n    n::::n i::::i      t:::::t    tttttt
-    FF:::::::FF           EE::::::EEEEEEEE:::::E     i::::::i n::::n    n::::ni::::::i     t::::::tttt:::::t
-    F::::::::FF           E::::::::::::::::::::E     i::::::i n::::n    n::::ni::::::i     tt::::::::::::::t
-    F::::::::FF           E::::::::::::::::::::E     i::::::i n::::n    n::::ni::::::i       tt:::::::::::tt
-    FFFFFFFFFFF           EEEEEEEEEEEEEEEEEEEEEE     iiiiiiii nnnnnn    nnnnnniiiiiiii         ttttttttttt  
+                         ______ ______   _       _ _   
+                        |  ____|  ____| (_)     (_) |  
+                        | |__  | |__     _ _ __  _| |_ 
+                        |  __| |  __|   | | '_ \| | __|
+                        | |    | |____  | | | | | | |_ 
+                        |_|    |______| |_|_| |_|_|\__|
+                    
 
 ## 安装
 
