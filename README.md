@@ -5,11 +5,6 @@ FEinit beta版
 ## 安装
 
 ```shell
-npm install -g FEinit
-```
-or
-
-```shell
 npm install http://github.com/ksky521/FEinit/tarball/master -g
 fe --help
 ```

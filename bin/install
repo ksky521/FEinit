@@ -25,6 +25,10 @@ read({
     }
 });
 
-var child = exec('cd ' + root + '/init && npm install', []).stdout.on('data', function(data) {
-    console.log('NOTE'.green + ': ' + data);
+var child = exec('cd ' + root + '/init && npm install', []);
+child.stdout.on('data', function(data) {
+    process.stdout.write('NOTE'.green + ': ' + data);
+});
+child.stderr.on('data', function(data) {
+    process.stdout.write('ERROR'.red + ': ' + data);
 });
