@@ -30,5 +30,5 @@ child.stdout.on('data', function(data) {
     process.stdout.write('NOTE'.green + ': ' + data);
 });
 child.stderr.on('data', function(data) {
-    process.stdout.write('ERROR'.red + ': ' + data);
+    // process.stdout.write('ERROR'.red + ': ' + data);
 });
