@@ -3,7 +3,7 @@
 SETLOCAL ENABLEEXTENSIONS
  
 :FEinit
-node cmdfe "%~dpf1"
+node "%~dp0\\cmdfe" "%~dpf1"
 goto End
 
 
