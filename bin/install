@@ -20,15 +20,24 @@ read({
             console.log('ERROR'.red + ': ' + data);
         });
         exe.on('exit', function() {
-            console.log('Done, Install Success!'.bold.green);
+            console.log('Done, 右键安装成功!'.bold.green);
+            installInitModules();
         })
+    }else{
+        installInitModules();
     }
 });
 
-var child = exec('cd ' + root + '/init && npm install', []);
-child.stdout.on('data', function(data) {
-    process.stdout.write('NOTE'.green + ': ' + data);
-});
-child.stderr.on('data', function(data) {
-    // process.stdout.write('ERROR'.red + ': ' + data);
-});
+function installInitModules(){
+    console.log('开始安装init默认的grunt插件...'.bold.green);
+    var child = exec('cd ' + root + '/init && npm install', []);
+    child.stdout.on('data', function(data) {
+        process.stdout.write('NOTE'.green + ': ' + data);
+    });
+    child.stderr.on('data', function(data) {
+        process.stdout.write('ERROR'.red + ': ' + data);
+    });
+    child.on('exit', function(){
+        console.log('Done, Install Success!'.bold.green);
+    })
+}
