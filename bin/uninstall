@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+var execFile = require('child_process').execFile;
+var join = require('path').join;
+var root = join(__dirname, '../');
+var colors = require('colors');
+
+var exe = execFile(root + '/uninstall.cmd', [])
+exe.stdout.on('data', function(data) {
+    console.log('NOTE'.green + ': ' + data);
+});
+exe.stderr.on('data', function(data) {
+    console.log('ERROR'.red + ': ' + data);
+});
+exe.on('exit', function() {
+    console.log('Done, Uninstall Success!'.bold.green);
+})

@@ -11,6 +11,11 @@
         "read": "~1.0.4",
         "grunt-init": "~0.2.0",
         "lodash": "~1.2.0",
-        "findup-sync":"~0.1.2"
+        "findup-sync": "~0.1.2",
+        "colors": "~0.6.0-1"
+    },
+    "scripts":{
+        "install":"./bin/install",
+        "postuninstall":"./bin/uninstall"
     }
 }

@@ -13,26 +13,6 @@ echo 初始化web项目 0.1 Author Theowang
 node cmdfe "%~dpf1"
 goto End
 
-:copyFile
-echo.
-echo 拷贝数据。。。
-echo.
-xcopy /e "%~dp0\\init" "%~dpf1"
-goto getInNewFolder 
-
-:getInNewFolder
-echo.
-echo 拷贝数据成功O(∩_∩)O~
-echo.
-cd "%~dpf1"
-goto createCompass 
-
-:createCompass
-compass init
-echo.
-echo **** ~O(∩_∩)O~ 初始化成功 ****
-echo.
-goto End 
 
 :End
 ENDLOCAL

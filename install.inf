@@ -1,6 +1,6 @@
 [Version]
 Signature="$CHICAGO$"
-Provider=ksky521@gmail.com, 2012
+Provider=ksky521@gmail.com, 2013
 
 [DefaultInstall]
 AddReg=Install_AddReg
@@ -9,11 +9,13 @@ AddReg=Install_AddReg
 DelReg=Uninstall_DelReg
 
 [Uninstall_DelReg]
-hkcr,"*\Shell\Compass"
+hkcr,"Folder\Shell\FEinit"
+hkcr,"Folder\Shell\FEinit\command"
+
 
 [Install_AddReg]
-hkcr,"Folder\Shell\Compass",,,"初始化FE项目"
-hkcr,"Folder\Shell\Compass\command",,,"""%01%\init.cmd"" ""%%1""
+hkcr,"Folder\Shell\FEinit",,,"初始化FE"
+hkcr,"Folder\Shell\FEinit\command",,,"""%01%\init.cmd"" ""%%1""
 
 
 
