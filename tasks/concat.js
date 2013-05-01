@@ -44,10 +44,8 @@ Task.prototype.start = function() {
             } else {
                 return true;
             }
-        }).map(function(v) {
-            var content = gFile.read(v);
-            return content;
-        }).join('\n');
+        }).map(gFile.read).join('\n');
+        gFile.write(that.dest, content);
         that.note('File "' + that.dest + '" created.');
     }
 }

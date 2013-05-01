@@ -44,6 +44,22 @@ git本项目，然后需要添加的grunt任务文件，添加到tasks文件夹�
 
 命令 ```fe task list``` 可以显示所有支持的grunt task列表
 
+## 支持的task
+列出支持的task命令
+
+### css
+合并css，解析import语法，选项 ```-c``` 为压缩，默认至合并不压缩
+
+```shell
+fe css a.css b.css to ab.css
+fe css -c a.css b.css to ab.min.css
+```
+### concat
+合并文件
+
+```shell
+fe concat file1 file2 file3 to concat
+```
 
 ## 卸载
 ```shell

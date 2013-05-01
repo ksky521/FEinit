@@ -12,3 +12,16 @@ FEinit ToDoList
 
 ## v0.2.0
  * 至少实现三个task
+
+## task list
+ * concat   √
+ * css      √
+ * jsmin
+ * csscombo
+ * htmlmin
+ * tar
+ * live
+ * watch
+ * clean
+ * sass
+ * imgmin

@@ -23,7 +23,6 @@ var opts = nopt({
 });
 var cmds = opts.argv.cooked;
 
-
 //显示帮助
 if (cmds.indexOf('--help') !== -1) {
     feEvent.help();
@@ -76,9 +75,20 @@ if (cmds.indexOf('init') !== -1) {
     return;
 }
 
-
+opts = {};
+cmds = cmds.filter(function(v) {
+    if (v.indexOf('-') === 0) {
+        v.slice(1).split('').map(function(v) {
+            if (v) {
+                opts[v] = true;
+            }
+        });
+        return false;
+    }
+    return true;
+});
 var Task = require(root + '/lib/task');
-var task = new Task(exeRoute, cmds);
+var task = new Task(exeRoute, cmds, opts);
 task.run();
 // return;
 // var grunt = require('grunt');
