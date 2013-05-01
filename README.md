@@ -84,3 +84,8 @@ fe js file.js file2.js to min.js --no-ascii
 ```shell
 npm uninstall -g FEinit
 ```
+
+## 关于作者
+ * 微博：[@三水清](http://weibo.com/sanshuiqing)
+ * github：[github.com/ksky521](http://github.com/ksky521)
+ * 博客：[三水清](http://js8.in)
