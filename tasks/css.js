@@ -30,16 +30,29 @@ Task.prototype.start = function() {
         that.error('Source files is empty!');
 
     } else {
-        that.note('开始合并css文件...');
+        that.note('Start css task...');
         var gFile = grunt.file;
+        var files = [];
         var dist = this.dist.filter(function(filepath) {
-            if (!gFile.exists(filepath)) {
+            if (gFile.isDir(filepath)) {
+                that.note('Recurse "' + filepath + '"...');
+                //这个是folder，需要遍历
+                gFile.recurse(filepath, function(abspath, rootdir, subdir, filename) {
+                    if (/\.css$/.test(filename)) {
+                        files.push(abspath);
+                    }
+                });
+                return false;
+            } else if (!gFile.exists(filepath)) {
                 that.warn('Source file "' + filepath + '" not found.');
                 return false;
             } else {
                 return true;
             }
         });
+
+        dist = dist.concat(files);
+
         var content = dist.map(function(v) {
             var content = gFile.read(v);
             content = CleanCSS._inlineImports(content, {
@@ -60,8 +73,8 @@ Task.prototype.start = function() {
     }
 }
 
-
 module.exports = new Task;
+
 function minifyCSS(source, options) {
     try {
         return CleanCSS.process(source, options);
