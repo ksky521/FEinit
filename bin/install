@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-var execFile = require('child_process').execFile;
-var exec = require('child_process').exec;
+var child_process = require('child_process');
+var execFile = child_process.execFile;
+var exec = child_process.exec;
 var join = require('path').join;
 var root = join(__dirname, '../');
 var read = require('read');

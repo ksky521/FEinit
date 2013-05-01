@@ -7,6 +7,10 @@ var help = join(__dirname, 'help.txt'); //帮助文件
 var config = join(__dirname, '../', 'config.json'); //默认配置文件
 var path = require('path');
 var grunt = require('grunt');
+
+var root = join(__dirname, '../');
+var feEvent = require(root + '/lib/feEvent');
+feEvent = new feEvent();
 // var cli = require('../lib/node_modules/grunt/lib/grunt/cli');
 // var cmds = cli.tasks,
 //     route = cmds.join(' ').trim('');
@@ -18,25 +22,11 @@ var opts = nopt({
     v: '--version'
 });
 var cmds = opts.argv.cooked;
-var root = join(__dirname, '../');
+
 
 //显示帮助
 if (cmds.indexOf('--help') !== -1) {
-    var txt = fs.readFileSync(help, 'utf-8').toString();
-    var lines = txt.split(/\n/);
-    var reg = /\[(.*?)\]\((.*?)\)/g;
-    lines.map(function(line) {
-        // console.log(line);
-        var m = line.replace(reg, function(match, _1, _2, l) {
-            var c = _2.split('.');
-            var back = _1;
-            c.map(function(v){
-                back = back[v];
-            });
-            return back;
-        });
-        console.log(m)
-    });
+    feEvent.help();
     return;
 }
 //显示版本
@@ -48,6 +38,7 @@ var str = cmds.join(' ');
 if (str === 'config list') {
     return fs.createReadStream(config).pipe(process.stdout);
 } else if (str.indexOf('config get') === 0) {
+
     cmds = cmds.slice(2);
     var json = require(config);
     var isArray = require('util').isArray;
@@ -72,15 +63,7 @@ if (str === 'config list') {
     spawn('explorer', [config]);
     return;
 } else if (str === 'task list') {
-    var files = fs.readdirSync(root + '/tasks');
-    files.forEach(function(file) {
-        var pathname = root + '/tasks/' + file,
-            stat = fs.lstatSync(pathname);
-
-        if (!stat.isDirectory() && /\.js$/.test(file)) {
-            console.log(' * ' + file.slice(0, -3).bold.yellow);
-        }
-    });
+    feEvent.taskList();
     return;
 }
 
@@ -93,8 +76,13 @@ if (cmds.indexOf('init') !== -1) {
     return;
 }
 
-var grunt = require('grunt');
-grunt.loadTasks(root + '/tasks');
-// console.log(grunt.task);
+
+var Task = require(root + '/lib/task');
+var task = new Task(exeRoute, cmds);
+task.run();
 // return;
-grunt.task.run(cmds).start();
+// var grunt = require('grunt');
+// grunt.loadTasks(root + '/tasks');
+// // console.log(grunt.task);
+// // return;
+// grunt.task.run(cmds).start();
