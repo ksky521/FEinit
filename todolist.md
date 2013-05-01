@@ -16,8 +16,7 @@ FEinit ToDoList
 ## task list
  * concat   √
  * css      √
- * jsmin
- * csscombo
+ * js       √
  * htmlmin
  * tar
  * live

@@ -47,20 +47,39 @@ git本项目，然后需要添加的grunt任务文件，添加到tasks文件夹�
 ## 支持的task
 列出支持的task命令
 
-### css
-合并css，解析import语法，选项 ```-c``` 为压缩，默认至合并不压缩
+### fe css [options] filename [folder/files..] to dest.css
+合并css，支持import语法解析。
+
+ * 选项 
+   * ```-c``` 压缩
+ * 默认
+   * 合并不压缩
 
 ```shell
 fe css a.css b.css to ab.css
 fe css -c a.css b.css to ab.min.css
 ```
-### concat
+### fe concat filename [files..] to dest
 合并文件
 
 ```shell
 fe concat file1 file2 file3 to concat
 ```
+## fe js [options] filename [folder/files..] to dest.js
+合并压缩js，
 
+ * 选项 
+   * ```-b``` or ```--beautify``` 美化
+   * ```--no-ascii``` 不ascii化，即不会讲中文转为 ```\uXXX``` 格式
+ * 默认
+   * 压缩
+   * 合并
+   * ascii化
+
+```shell
+fe js file.js file2.js to min.js
+fe js file.js file2.js to min.js --no-ascii
+```
 ## 卸载
 ```shell
 npm uninstall -g FEinit

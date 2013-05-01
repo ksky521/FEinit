@@ -77,12 +77,15 @@ if (cmds.indexOf('init') !== -1) {
 
 opts = {};
 cmds = cmds.filter(function(v) {
-    if (v.indexOf('-') === 0) {
-        v.slice(1).split('').map(function(v) {
-            if (v) {
-                opts[v] = true;
-            }
-        });
+    if(v.indexOf('--')===0){
+        var t = v.slice(2);
+        if(t){
+            opts[t] = true;   
+        }
+        return false;
+    }else if (v.indexOf('-') === 0) {
+        v = v.slice(1);
+        opts[v] = true;
         return false;
     }
     return true;
