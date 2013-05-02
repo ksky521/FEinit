@@ -8,7 +8,6 @@
  * [fe config -e](green)：编辑config文件，会调用explorer config.json
  * [fe task -l](green)：列出支持的grunt task
  * [fe template -h](green)：获取template使用帮助
- * 任务相关命令
-     > [fe css a.css b.css to ab.css](green):合并css，支持import语法
-     > [fe js a.js b.js to ab.js](green):合并压缩js
-     > [fe concat a b to ab](green):简单文件合并
+ * [fe plugin new-plugin](green)：创建new-plugin的task
+ * 任务相关命令，每个task都有不同的参数，但是都提供一个help命令，如
+     > [fe concat --help](green): 查看concat的帮助
