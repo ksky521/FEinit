@@ -17,25 +17,30 @@
     "dirs": [
         "src/img/pic",
         "src/js",
-        "src/css"],
+        "src/css"
+    ],
     "files": {
         "Sass": [
             "config.rb",
-            "src/sass/_base.scss"],
+            "src/sass/_base.scss"
+        ],
         "index": [
-            "src/index.html"],
+            "src/index.html"
+        ],
         "jQuery": [
-            "src/js/jquery.1.8.2.js"],
+            "src/js/jquery.1.8.2.js"
+        ],
         "Zepto": [
-            "src/js/zepto.js"]
+            "src/js/zepto.js"
+        ]
     },
     "templates": {
         "demo": {
             "name": "demo",
-            "description": "这里是描述",
-            "directory": "路径",
-            "withGrunt": true,
-            "withCompass": false
+            "directory": "E:\\www\\github\\FEinit\\test",
+            "description": "A another template.",
+            "withGrunt": "Y",
+            "withCompass": "n"
         }
     }
 }

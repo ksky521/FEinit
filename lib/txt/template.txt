@@ -1,0 +1,4 @@
+正在添加模板，请回答下面问题：
+[?] 请输入模板描述 (A another template.) | description
+[?] 本模板使用Grunt环境吗 [y/n] (Y) | withGrunt
+[?] 本模板使用Compass/Sass吗 [y/n] (Y) | withCompass

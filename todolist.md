@@ -10,6 +10,10 @@ FEinit ToDoList
     * fe task a.js b.js c.js > concat.js
     * ...
 
+## v0.1.3
+ * 添加task帮助
+ * 实现template创建
+
 ## v0.2.0
  * 至少实现三个task
 

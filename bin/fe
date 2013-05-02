@@ -29,7 +29,7 @@ var opts = nopt({
 var cmds = opts.argv.cooked;
 
 //显示帮助
-if (cmds.indexOf('--help') !== -1) {
+if (cmds.indexOf('--help') === 0) {
     log.help();
     return;
 }
