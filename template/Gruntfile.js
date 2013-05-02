@@ -105,7 +105,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   //livereload
-  grunt.loadNpmTasks('grunt-livereload');
+  grunt.loadNpmTasks('grunt-contrib-livereload');
   grunt.registerTask('live', ['livereload', 'watch:css']);
   //img min
   grunt.loadNpmTasks('grunt-contrib-imagemin');
