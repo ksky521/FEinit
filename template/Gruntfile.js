@@ -64,21 +64,15 @@ module.exports = function(grunt) {
       options: {
       },
       dist: {
-        src: 'src/js/touch.js',
-        dest: 'src/js/touch-min.js'
+        src: 'src/js/demo.js',
+        dest: 'src/js/demo.min.js'
       }
     },
-    // regarde: {
 
-    //  css: {
-    //    files: 'src/sass/*.scss',
-    //    tasks:['compass:dev']
-    //  }
-    // },
     watch: {
       //grunt watch:js|css
       js: {
-        files: ['src/js/touch.js'],
+        files: ['src/js/demo.js'],
         tasks: ['jshint'],
       },
       css: {
@@ -94,8 +88,20 @@ module.exports = function(grunt) {
         src: ['src/img/*', 'src/img/**/*'],
         dest: 'src/imgmin/'
       }
+    },
+    compress: {
+      main: {
+        options: {
+          archive: 'project.zip'
+        },
+        files: [{
+          expand: true,
+          cwd: 'src',
+          src: ['**'],
+          filter: 'isFile'
+        }]
+      }
     }
-
   });
 
   // grunt.loadNpmTasks('grunt-regarde');
@@ -104,6 +110,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-compress');
   //livereload
   grunt.loadNpmTasks('grunt-contrib-livereload');
   grunt.registerTask('live', ['livereload', 'watch:css']);
