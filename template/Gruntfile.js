@@ -24,7 +24,7 @@ module.exports = function(grunt) {
         $: true,
         console: true
       },
-      files: ['src/js/touch.js']
+      files: ['src/js/*.js']
 
     },
     livereload: {
