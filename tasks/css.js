@@ -24,6 +24,12 @@ var CleanCSS = require('clean-css');
 var options = {
     report: false
 };
+Task.prototype.help = function(log){
+    log.log('>>> fe css task 帮助');
+    log.log('    * [fe css a.css b.css to ab.css](yellow) 将a和b合并为ab');
+    log.log('    * [fe css -c a.css b.css to ab.min.css](yellow) 合并成ab并压缩');
+    log.log(' [PS](green) 本命令会自动解析文件中import的语法并合并');
+}
 Task.prototype.start = function() {
     var that = this;
     if (this.dist.length === 0) {

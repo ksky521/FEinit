@@ -19,7 +19,10 @@ var color = require('colors');
 
 var Task = function() {};
 util.inherits(Task, feTask);
-
+Task.prototype.help = function(log){
+    log.log('>>> fe concat task 帮助');
+    log.log('    * [fe concat a.js b.js to dest.js](yellow) 将a.js和b.js合并为dest.js');
+}
 Task.prototype.start = function() {
     var that = this;
     if (this.dist.length === 0) {

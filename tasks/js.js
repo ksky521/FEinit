@@ -21,6 +21,15 @@ util.inherits(Task, feTask);
 
 //task依赖模块
 var uglifyjs = require('uglify-js');
+
+Task.prototype.help = function(log){
+    log.log('>>> fe js task 帮助');
+    log.log('    * [fe js a.js b.js to ab.min.js](yellow) 将a和b合并压缩为ab');
+    log.log('    * [fe js -b a.js b.js to ab.js](yellow) 合并成ab不压缩，会进行语法变动');
+    log.log('    * [fe js --no-ascii a.js b.js to ab.js](yellow) 中文不会转码成\\uXXX格式');
+    log.log(' [PS](green) 使用 "-b" 合并会造成语法变动，如果单纯合并js文件请使用concat命令');
+}
+
 Task.prototype.start = function() {
     var that = this;
     if (this.dist.length === 0) {

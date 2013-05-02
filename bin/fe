@@ -28,8 +28,9 @@ var opts = nopt({
 });
 var cmds = opts.argv.cooked;
 
+var str = cmds.join(' ').trim();
 //显示帮助
-if (cmds.indexOf('--help') === 0) {
+if (str === '--help') {
     log.help();
     return;
 }
@@ -39,7 +40,6 @@ if (cmds.indexOf('--version') !== -1) {
 }
 var firstCmd = cmds.slice(0, 1).toString();
 //config 命令
-var str = cmds.join(' ').trim();
 var temp1, temp2;
 if (firstCmd === 'template') {
     //模板皮肤相关的直接扔给 feTemplate
@@ -50,6 +50,8 @@ if (firstCmd === 'template') {
     cmds.splice(0, 1);
     require(root + '/lib/feTemplate')(cmds, process.cwd());
     return;
+} else if (firstCmd === 'plugin') {
+    //自动生成二次开发插件
 } else if (str === 'config --list' || str === 'config') {
     //config 列表
     log.note('config.json: ');
@@ -126,6 +128,7 @@ cmds = cmds.filter(function(v) {
         return false;
     } else if (v.indexOf('-') === 0) {
         v = v.slice(1);
+
         opts[v] = true;
         return false;
     }
@@ -134,6 +137,7 @@ cmds = cmds.filter(function(v) {
 
 var Task = require(root + '/lib/task');
 var task = new Task(process.cwd(), cmds, opts);
+
 task.run();
 
 

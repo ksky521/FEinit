@@ -18,10 +18,21 @@ __P.S.__：安装最后会选择是否添加鼠标右键功能
 ### fe -h or fe --help
 查看帮助文件
 
-### fe tasks
-还在开发中...
+## template功能（开发中）
+生成（前端）项目的默认文件，可以指定自己电脑任意文件夹为项目模板（称为template），使用时：
 
-### 项目的src文件夹默认结构如下
+ * 进入要创建项目的文件夹
+ * 执行 ```fe init templateName``` 
+ * fe自动复制对应的template文件夹所有文件到当前路径
+
+PS：```fe init``` 和 右键菜单创建项目，则为默认的template（可以设置）
+
+### template帮助
+```shell
+fe template -h
+```
+
+#### fe自带默认项目的src文件夹结构如下
 
     │  index.html             //首页
     │
@@ -35,18 +46,11 @@ __P.S.__：安装最后会选择是否添加鼠标右键功能
     └─sass                   //compass sass文件夹
             _base.scss       //compass bass文件
 
-## 二次开发
-支持二次开发和DIY的grunt task。
-
-git本项目，然后需要添加的grunt任务文件，添加到tasks文件夹下即可。
-
-0.1.0版本尚未添加tasks，只有个test……还在努力coding中
-
-命令 ```fe task --list``` 可以显示所有支持的grunt task列表
 
 ## 支持的task
 列出支持的task命令
 
+所有task支持查看帮助，使用 ```fe taskName -h``` 获取帮助
 ### fe css [options] filename [folder/files..] to dest.css
 合并css，支持import语法解析。
 
@@ -80,6 +84,15 @@ fe concat file1 file2 file3 to concat
 fe js file.js file2.js to min.js
 fe js file.js file2.js to min.js --no-ascii
 ```
+## 二次开发
+支持二次开发和DIY的grunt task。
+
+git本项目，然后需要添加的grunt任务文件，添加到tasks文件夹下即可。
+
+0.1.0版本尚未添加tasks，只有个test……还在努力coding中
+
+命令 ```fe task --list``` 可以显示所有支持的grunt task列表
+
 ## 卸载
 ```shell
 npm uninstall -g FEinit
