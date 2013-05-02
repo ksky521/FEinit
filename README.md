@@ -1,6 +1,11 @@
 FEinit beta版
 ======
-基于Grunt和compass的前端项目工具集，因为是在windows系统开发，所以目前仅适合 __windows__ 系统。                   
+基于Grunt和compass的前端项目工具集，因为是在windows系统开发，所以目前仅适合 __windows__ 系统。
+
+主要功能：
+ * 提供前端项目中常用的工具集
+ * 通过template快速创建（前端）项目
+ * 提供插件机制，每个FEer都可以开发自己的fe工具
 
 ## 安装
 
@@ -25,13 +30,13 @@ __P.S.__：安装最后会选择是否添加鼠标右键功能
  * 执行 ```fe init templateName``` 
  * fe自动复制对应的template文件夹所有文件到当前路径
 
-PS：```fe init``` 和 右键菜单创建项目，则为默认的template（可以设置）
+__P.S.__：```fe init``` 和 右键菜单创建项目，则为默认的template（可以设置）
 
 ### template帮助
+
 ```shell
 fe template -h
 ```
-
 #### fe自带默认项目的src文件夹结构如下
 
     │  index.html             //首页
@@ -85,15 +90,28 @@ fe js file.js file2.js to min.js
 fe js file.js file2.js to min.js --no-ascii
 ```
 ## 二次开发
-支持二次开发和DIY的grunt task。
+支持二次开发和DIY自己的task，称之为plugin机制，即实现的一种插件机制，通过提供的接口实现一个task功能
 
-git本项目，然后需要添加的grunt任务文件，添加到tasks文件夹下即可。
+命令 ```fe task --list``` 可以显示所有支持的 task 列表。
 
-0.1.0版本尚未添加tasks，只有个test……还在努力coding中
+### 添加一个plugin
 
-命令 ```fe task --list``` 可以显示所有支持的grunt task列表
+```shell
+fe plugin my-first-task
+```
 
+上面命令在 fe 的tasks文件夹中创建了一个名字为 ```my-first-task.js``` 的文件，打开后您会看到基本内容已经写好了，您要做的就是专注于自己plugin的功能即可。
+
+plugin开发完成后，使用：
+
+```shell
+fe my-first-task -h //查看帮助
+fe my-first-task [options] [to] [destOptions] //执行命令
+```
+
+__P.S.__：plugin名称为字母和下划线(_)组成，并且不得与之前的task重名
 ## 卸载
+
 ```shell
 npm uninstall -g FEinit
 ```

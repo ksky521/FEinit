@@ -12,7 +12,12 @@ FEinit ToDoList
 
 ## v0.1.3
  * 添加task帮助
- * 实现template创建
+ * 实现template创建 √
+ * template使用
+ * 设置默认template
+
+## v0.1.4
+ * 实现插件开发创建 
 
 ## v0.2.0
  * 至少实现三个task

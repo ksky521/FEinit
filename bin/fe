@@ -52,6 +52,9 @@ if (firstCmd === 'template') {
     return;
 } else if (firstCmd === 'plugin') {
     //自动生成二次开发插件
+    cmds.splice(0, 1);
+    require(root + '/lib/fePlugin')(cmds, process.cwd());
+    return;
 } else if (str === 'config --list' || str === 'config') {
     //config 列表
     log.note('config.json: ');

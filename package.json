@@ -1,9 +1,10 @@
 {
     "name": "FEinit",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "A tool for create Front-end projects",
     "author": {
         "name": "Theo Wang",
+        "weibo": "@三水清",
         "website": "http://js8.in"
     },
     "homepage": "https://github.com/ksky521/FEinit",

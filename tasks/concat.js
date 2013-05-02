@@ -15,7 +15,6 @@ var root = join(__dirname, '../');
 //非系统模块
 var feTask = require(root + '/lib/feTask');
 var grunt = require('grunt');
-var color = require('colors');
 
 var Task = function() {};
 util.inherits(Task, feTask);
@@ -27,7 +26,7 @@ Task.prototype.start = function() {
     var that = this;
     if (this.dist.length === 0) {
         //执行grunt的concat任务
-        that.note('开始grunt concat任务...'.yellow);
+        that.note('[开始grunt concat任务...](yellow)');
         var child = exec('cd ' + this.root + ' && grunt concat');
         child.stderr.on('data', function(data) {
             that.error(data);

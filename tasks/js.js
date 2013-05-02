@@ -14,7 +14,6 @@ var root = join(__dirname, '../');
 //非系统模块
 var feTask = require(root + '/lib/feTask');
 var grunt = require('grunt');
-var color = require('colors');
 
 var Task = function() {};
 util.inherits(Task, feTask);
