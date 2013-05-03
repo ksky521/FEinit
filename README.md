@@ -13,6 +13,9 @@ FEinit beta版
   * 安装了nodejs
   * 并且把nodejs添加到环境变量
   * compass和sass需要ruby支持，我用的版本是2.0
+  * 添加右键如果失败，请更换管理组用户重试
+
+开发匆忙，难免有bug，可以在线提issue
 
 ## 安装
 
