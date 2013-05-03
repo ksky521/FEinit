@@ -53,4 +53,4 @@ Task.prototype.start = function() {
 }
 
 
-module.exports = new Task;
+module.exports = new Task();

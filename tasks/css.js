@@ -20,14 +20,17 @@ var Task = function() {};
 util.inherits(Task, feTask);
 //task依赖模块
 var CleanCSS = require('clean-css');
+var cssbeautify = require('js-beautify').css;
 var options = {
     report: false
 };
-Task.prototype.help = function(log){
+Task.prototype.help = function(log) {
     log.log('>>> fe css task 帮助');
     log.log('    * [fe css a.css b.css to ab.css](yellow) 将a和b合并为ab');
+    log.log('    * [fe css -u a.css b.css to ab.css](yellow) 将a和b合并为ab，但是不美化');
     log.log('    * [fe css -c a.css b.css to ab.min.css](yellow) 合并成ab并压缩');
-    log.log(' [PS](green) 本命令会自动解析文件中import的语法并合并');
+    log.log(' [PS](green) 1.会自动解析文件中import的语法并合并');
+    log.log('    2.默认会美化，使用-u参数来取消美化');
 }
 Task.prototype.start = function() {
     var that = this;
@@ -72,13 +75,18 @@ Task.prototype.start = function() {
         } else {
             //charset往前走
             content = moveCharset(content);
+            if (that.options['un-beautify'] || that.options.u) {
+
+            }else{
+                content = cssbeautify(content);
+            }
         }
         gFile.write(that.dest, content);
         that.note('File "' + that.dest + '" created.');
     }
 }
 
-module.exports = new Task;
+module.exports = new Task();
 
 function minifyCSS(source, options) {
     try {
@@ -93,7 +101,7 @@ function moveCharset(data) {
     var lineBreak = process.platform == 'win32' ? '\r\n' : '\n';
     // get first charset in stylesheet
     var match = data.match(/@charset [^;]+;/);
-    var firstCharset = match ? match[0] : null;
+    var firstCharset = match ? (match[0] + '\n') : null;
     if (!firstCharset) return data;
 
     // reattach first charset and remove all subsequent
