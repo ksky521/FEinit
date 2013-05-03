@@ -7,6 +7,11 @@ FEinit beta版
  * 通过template快速创建（前端）项目
  * 提供插件机制，每个FEer都可以开发自己的fe工具
 
+环境要求：
+  * 安装了nodejs
+  * 并且把nodejs添加到环境变量
+  * compass和sass需要ruby支持，我用的版本是2.0
+
 ## 安装
 
 ```shell

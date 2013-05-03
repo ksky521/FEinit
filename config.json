@@ -1,5 +1,5 @@
 {
-    "download": false,
+    "download": true,
     "dependencies": {
         "grunt": "~0.4.1",
         "grunt-contrib": "~0.5.0",
@@ -41,6 +41,13 @@
             "description": "A another template.",
             "withGrunt": "Y",
             "withCompass": "n"
+        },
+        "works": {
+            "name": "works",
+            "directory": "E:\\www\\github\\works",
+            "description": "fdsafafd",
+            "withGrunt": true,
+            "withCompass": false
         }
     }
 }
