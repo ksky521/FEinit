@@ -62,7 +62,12 @@ fe template -h
 ## 支持的task
 列出支持的task命令
 
-所有task支持查看帮助，使用 ```fe taskName -h``` 获取帮助
+所有task支持查看帮助，使用 ```fe taskName -h``` 获取帮助，例如：
+
+```shell
+## 获取concat的帮助
+fe concat -h
+```
 
 ### fe concat
 ##### 功能
@@ -91,8 +96,10 @@ fe css -c a.css b.css to ab.min.css
 
  * 选项 
    * ```-c``` 压缩
+   * ```-u``` 不美化，源文件输出
  * 默认
-   * 合并不压缩
+   * 合并
+   * 美化
 
 ### fe js 
 ##### 功能
@@ -115,6 +122,27 @@ fe js file.js file2.js to min.js --no-ascii
    * 合并
    * ascii化
 
+
+### fe build 
+##### 功能
+将html中的引入的js和css合并到html中，支持压缩
+
+
+##### 基本语法
+
+```shell
+fe build [options] filename [files..] [to] [dest.html]
+## 举例
+fe build demo.html demo2.html -b
+fe build demo.html to min.html --no-ascii
+```
+
+ * 选项 
+   * ```-b``` or ```--beautify``` 美化
+   * ```--no-ascii``` 不ascii化，即不会讲中文转为 ```\uXXX``` 格式
+ * 默认
+   * 压缩
+   * ascii化
 
 ### 常见参数缩写
  * -h: --help     //帮助
