@@ -1,4 +1,6 @@
-项目相关：
+请回答Grunt相关的问题:
+[?] 项目名称 (feinit) | name
+[?] 项目描述 (The best project ever.) | description
+[?] 作者名 (Theowang) | userName
+[?] Email地址 (ksky521@gmail.com) | userEmail
 [?] 要使用Compass/Sass吗 [y/n] (Y) | Sass
-[?] 需要jQuery吗 [y/n] (Y) | jQuery
-[?] 需要Zepto吗 [y/n] (n) | Zepto
