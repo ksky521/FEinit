@@ -26,7 +26,7 @@ FEinit ToDoList
  * concat   √
  * css      √
  * js       √
- * febuild    
+ * build    √   
  * tar
  * live
  * watch
