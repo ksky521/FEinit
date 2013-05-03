@@ -10,11 +10,12 @@ var name = '<%= name %>';
 //非系统模块
 var feTask = require(root + '/lib/feTask');
 var grunt = require('grunt');
+var log = require(join(root, '/lib/feLog'));
 
 var Task = function() {};
 util.inherits(Task, feTask);
 //help是帮助函数，fe <%= name %> -h 执行该函数
-Task.prototype.help = function(log) {
+Task.prototype.help = function() {
     log.log('>>> fe <%= name %> task 帮助');
     log.log('    * [这里是帮助内容](yellow) : 前面[]内字体颜色是黄色的哦');
 }
