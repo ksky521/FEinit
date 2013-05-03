@@ -18,7 +18,7 @@ util.inherits(Task, feTask);
 Task.prototype.help = function() {
     log.log('>>> fe <%= name %> task 帮助');
     log.log('    * [这里是帮助内容](yellow) : 前面[]内字体颜色是黄色的哦');
-}
+};
 
 //任务启动函数，this.dest是目的文件(夹)，this.dist是要处理的文件(夹)
 Task.prototype.start = function() {
@@ -39,7 +39,7 @@ Task.prototype.start = function() {
         //执行自己的<%= name %>任务
 
     }
-}
+};
 
 
-module.exports = new Task;
+module.exports = new Task();
