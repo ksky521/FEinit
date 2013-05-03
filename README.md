@@ -4,6 +4,8 @@ FEinit beta版
 
 主要功能：
  * 提供前端项目中常用的工具集
+    * 相对于grunt的task文件形式，FEinit的task是在命令行执行
+    * 适合临时性、零碎的task需求
  * 通过template快速创建（前端）项目
  * 提供插件机制，每个FEer都可以开发自己的fe工具
 
@@ -28,7 +30,7 @@ __P.S.__：安装最后会选择是否添加鼠标右键功能
 ### fe -h or fe --help
 查看帮助文件
 
-## template功能（开发中）
+## template功能
 生成（前端）项目的默认文件，可以指定自己电脑任意文件夹为项目模板（称为template），使用时：
 
  * 进入要创建项目的文件夹
@@ -61,26 +63,49 @@ fe template -h
 列出支持的task命令
 
 所有task支持查看帮助，使用 ```fe taskName -h``` 获取帮助
-### fe css [options] filename [folder/files..] to dest.css
+
+### fe concat
+##### 功能
+合并文件
+
+##### 基本语法
+
+```shell
+filename [files..] to dest
+## 举例
+fe concat file1 file2 file3 to concat
+```
+
+### fe css
+##### 功能
 合并css，支持import语法解析。
+
+##### 基本语法
+
+```shell
+fe css [options] filename [folder/files..] to dest.css
+## 举例
+fe css a.css b.css to ab.css
+fe css -c a.css b.css to ab.min.css
+```
 
  * 选项 
    * ```-c``` 压缩
  * 默认
    * 合并不压缩
 
-```shell
-fe css a.css b.css to ab.css
-fe css -c a.css b.css to ab.min.css
-```
-### fe concat filename [files..] to dest
-合并文件
+### fe js 
+##### 功能
+合并压缩js
+
+##### 基本语法
 
 ```shell
-fe concat file1 file2 file3 to concat
+fe js [options] filename [folder/files..] to dest.js
+## 举例
+fe js file.js file2.js to min.js
+fe js file.js file2.js to min.js --no-ascii
 ```
-## fe js [options] filename [folder/files..] to dest.js
-合并压缩js，
 
  * 选项 
    * ```-b``` or ```--beautify``` 美化
@@ -90,10 +115,15 @@ fe concat file1 file2 file3 to concat
    * 合并
    * ascii化
 
-```shell
-fe js file.js file2.js to min.js
-fe js file.js file2.js to min.js --no-ascii
-```
+
+### 常见参数缩写
+ * -h: --help     //帮助
+ * -l: --list     //列表
+ * -c: --create   //创建
+ * -e: --edit     //修改
+ * -rm: --remove  //删除
+ * -v: --version  //版本
+
 ## 二次开发
 支持二次开发和DIY自己的task，称之为plugin机制，即实现的一种插件机制，通过提供的接口实现一个task功能
 
@@ -110,11 +140,19 @@ fe plugin my-first-task
 plugin开发完成后，使用：
 
 ```shell
-fe my-first-task -h //查看帮助
-fe my-first-task [options] [to] [destOptions] //执行命令
+## 查看帮助
+fe my-first-task -h 
+## 执行命令
+fe my-first-task [options] [to] [destOptions] 
 ```
 
-__P.S.__：plugin名称为字母和下划线(_)组成，并且不得与之前的task重名
+__P.S.__
+ 
+ * plugin名称为字母和下划线(_)组成，并且不得与之前的task重名
+ * 为了跟sheel自带的 ```>``` 区分，使用 ```to``` 作为输出符号
+
+
+
 ## 卸载
 
 ```shell
