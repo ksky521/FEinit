@@ -1,5 +1,7 @@
 FEinit beta版
 ======
+![FEinit帮助界面](./pic/feinit.png "FEinit帮助界面")
+
 基于Grunt和compass的前端项目工具集，因为是在windows系统开发，所以目前仅适合 __windows__ 系统。
 
 主要功能：
