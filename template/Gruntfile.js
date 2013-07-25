@@ -27,12 +27,7 @@ module.exports = function(grunt) {
       files: ['src/js/*.js']
 
     },
-    livereload: {
-      options: {
-        base: 'public',
-      },
-      files: ['src/**/*']
-    },
+   
     <% if (Sass=='y' || Sass=='Y') { %>
     compass: {
       dev: {
@@ -80,15 +75,7 @@ module.exports = function(grunt) {
         tasks: ['compass:dev'],
       }
     },
-    imagemin: {
-      dist: {
-        options: { // Target options
-          optimizationLevel: 3
-        },
-        src: ['src/img/*', 'src/img/**/*'],
-        dest: 'src/imgmin/'
-      }
-    },
+  
     compress: {
       main: {
         options: {
@@ -112,10 +99,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-compress');
   //livereload
-  grunt.loadNpmTasks('grunt-contrib-livereload');
-  grunt.registerTask('live', ['livereload', 'watch:css']);
   //img min
-  grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.registerTask('build', ['uglify', 'concat', 'compass:build']);
 
   grunt.registerTask('imgmin', ['imagemin']);
