@@ -116,7 +116,7 @@ var parse = {
     _jsReg: /src=['"](.+?)['"]/i,
     _cssReg: /href=['"](.+?)['"]/i,
     script: function(tag, params) {
-        var content = this.getCode(this._jsReg, tag.lines, params.dir);
+        var content = this.getCode(this._jsReg, tag.lines, params.dir, ';');
         if (!params.b) {
 
             content = uglifyjs.minify(content, {
@@ -143,8 +143,9 @@ var parse = {
         content = '<style type="text/css">\n' + content.trim() + '\n</style>';
         return content;
     },
-    getCode: function(reg, lines, dir) {
+    getCode: function(reg, lines, dir, spl) {
         var gFile = grunt.file;
+        spl = spl || '';
         lines = lines.map(function(v) {
             var content = '';
             var m = v.match(reg);
@@ -166,7 +167,7 @@ var parse = {
                     }
                 }
             }
-            return content+';';
+            return content+spl;
         });
 
         return lines.join(EOL);
