@@ -52,7 +52,7 @@ Task.prototype.start = function() {
             destFile = this.dest;
         }
         this.dist.forEach(function(v) {
-            var filepath = join(_.root, v);
+            var filepath = v;
             var dirname = path.dirname(filepath);
             var dest = destFile;
             if (!destFile || destFile === '') {
@@ -166,7 +166,7 @@ var parse = {
                     }
                 }
             }
-            return content;
+            return content+';';
         });
 
         return lines.join(EOL);
