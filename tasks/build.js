@@ -18,7 +18,7 @@ util.inherits(Task, feTask);
 Task.prototype.help = function() {
     log.log(' >>>fe build task 帮助');
     log.log('    * [fe build a.html](yellow) : 将页面中js和css合并到a.min.html中');
-    log.log('    * [fe build a.html to b.html](yellow) : 将页面中js和css合并到b.html中');
+    log.log('    * [fe build a.html -o b.html](yellow) : 将页面中js和css合并到b.html中');
     log.log('    * [fe build a.html -b](yellow) : 合并后并且美化');
     log.log('    * [fe build a.html --no-ascii](yellow) : js中文不转成\\uXXX');
     log.log('  [PS](bold.green) 只有在html中build语法正确才可以识别');

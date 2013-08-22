@@ -26,7 +26,7 @@ Task.prototype.start = function() {
     //*************************下面是您要开发的内容哦***************************************
     if (this.dist.length === 0) {
         //举例：执行grunt的<%= name %>任务
-        that.note('[开始grunt <%= name %>任务...](yellow)');
+        that.note('[开始 <%= name %>任务...](yellow)');
         var child = exec('cd ' + this.root + ' && grunt <%= name %>');
         child.stderr.on('data', function(data) {
             that.error(data);

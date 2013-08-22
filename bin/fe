@@ -1,7 +1,17 @@
 #!/usr/bin/env node
 
 var fs = require('fs');
-var nopt = require('nopt');
+var optimist = require('optimist')
+    .alias({
+        'R': 'remove',
+        'h': 'help',
+        'o': 'output',
+        'l': 'list',
+        'c': 'create',
+        'e': 'edit',
+        'v': 'version'
+    }).boolean(['v', 'h']);
+
 var path = require('path');
 var join = path.join;
 var config = join(__dirname, '../', 'config.json'); //默认配置文件
@@ -16,142 +26,63 @@ var log = require(root + '/lib/feLog');
 // var cmds = cli.tasks,
 //     route = cmds.join(' ').trim('');
 
-var opts = nopt({
-    help: Boolean
-}, {
-    h: '--help',
-    l: '--list', //列表
-    c: '--create', //创建
-    e: '--edit', //修改
-    rm: '--remove', //删除
-    v: '--version'
-});
-var cmds = opts.argv.cooked;
+var cmds = optimist.argv;
 
-var str = cmds.join(' ').trim();
-//显示帮助
-if (str === '--help') {
-    log.help();
-    return;
-}
-//显示版本
-if (cmds.indexOf('--version') !== -1) {
-    return log.logo();
-}
-var firstCmd = cmds.slice(0, 1).toString();
-//config 命令
-var temp1, temp2;
-if (firstCmd === 'template') {
-    //模板皮肤相关的直接扔给 feTemplate
-    //-c 创建
-    //-rm 删除
-    //-l 列表
-    //-e 编辑
-    cmds.splice(0, 1);
-    require(root + '/lib/feTemplate')(cmds, process.cwd());
-    return;
-} else if (firstCmd === 'plugin') {
-    //自动生成二次开发插件
-    cmds.splice(0, 1);
-    require(root + '/lib/fePlugin')(cmds, process.cwd());
-    return;
-} else if (str === 'config --list' || str === 'config') {
-    //config 列表
-    log.note('config.json: ');
-
-    return fs.createReadStream(config).pipe(process.stdout);
-} else if ((temp1 = str.indexOf('config')) !== -1 && (temp2 = str.indexOf('--edit')) !== -1) {
-    //config 编辑
-    var t = [].slice.call(cmds);
-    t.splice(temp1, 1).splice(temp2 - 1, 1);
-    if (t.length === 0) {
-        var spawn = require('child_process').spawn;
-        // spawn('notepad',[config]);
-        spawn('explorer', [config]);
-    } else {
-        var oldConfig = require(config);
-        var newConfig = {};
-        t.forEach(function(v) {
-            var a = v.split('=');
-            if (a.length == 2) {
-                newConfig[a[0]] = getValue(a[1]);
-            }
-        });
-        for (var i in newConfig) {
-            oldConfig[i] = newConfig[i];
-        }
-        grunt.file.write(config, JSON.stringify(oldConfig, null, 4));
-        log.note('成功修改 config.json ');
-
+var firstCmd = cmds._.splice(0, 1).toString();
+if (!firstCmd) {
+    //显示帮助
+    if (cmds.h) {
+        log.help();
+        return;
     }
-    return;
-} else if (temp1 === 0) {
-    //获取单条config
-    cmds = cmds.slice(1);
-    var json = require(config);
-    var isArray = require('util').isArray;
-    log.note('from "config.json": ');
-
-    cmds.forEach(function(v) {
-        if (v.indexOf('--') === 0) {
-            return;
-        }
-        var str = function(s) {
-            if (isArray(s) || typeof s === 'object') {
-                return JSON.stringify(s, null, 4);
-            }
-            return s;
-        }(json[v]);
-        log.log(v + '==>' + str);
-    });
-    return;
-} else if (str === 'task --list' || str === 'task') {
-    //task列表
-    feEvent.taskList();
-    return;
-}
-
-//调用tasks里面的grunt任务
-// var findup = require('findup-sync');
-// var exeRoute = findup('./');
-var initIndex = cmds.indexOf('init');
-if (initIndex !== -1) {
-    var FE = require(root + '/lib/FEinit');
-    FE.init(process.cwd()).start(cmds.splice(initIndex + 1, 1).toString());
-    return;
-}
-
-opts = {};
-cmds = cmds.filter(function(v) {
-    if (v.indexOf('--') === 0) {
-        var t = v.slice(2);
-        if (t) {
-            opts[t] = true;
-        }
-        return false;
-    } else if (v.indexOf('-') === 0) {
-        v = v.slice(1);
-
-        opts[v] = true;
-        return false;
+    //显示版本
+    if (cmds.v) {
+        return log.logo();
     }
-    return true;
-});
-
-var Task = require(root + '/lib/task');
-var task = new Task(process.cwd(), cmds, opts);
-
-task.run();
+}
 
 
-function getValue(str) {
-    switch (str) {
+
+switch (firstCmd) {
+    case 'template':
+        //模板皮肤相关的直接扔给 feTemplate
+        //-c 创建
+        //-rm 删除
+        //-l 列表
+        //-e 编辑
+        require(root + '/lib/feTemplate')(cmds, process.cwd());
+        break;
+    case 'plugin':
+        //自动生成二次开发插件
+        require(root + '/lib/fePlugin')(cmds, process.cwd());
+        break;
+    case 'config':
+        //config 列表
+        log.note('config.json: ');
+        fs.createReadStream(config).pipe(process.stdout);
+        break;
+    case 'task':
+        //task列表
+        feEvent.taskList();
+        break;
+    case 'init':
+    case 'create':
+        var FE = require(root + '/lib/FEinit');
+        FE.init(process.cwd()).start(cmds._.splice(0, 1).toString());
+        break;
+    default:
+        var Task = require(root + '/lib/task');
+        var task = new Task(process.cwd(), cmds);
+        task.run();
+}
+
+
+function getValue(a) {
+    switch (a) {
         case 'true':
-            str = true;
-            break;
+            return true;
         case 'false':
-            str = false;
-            break;
+            return false;
     }
-    return str;
+    return a;
 }

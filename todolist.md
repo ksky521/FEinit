@@ -1,8 +1,8 @@
 FEinit ToDoList
 =======
-当前版本 v0.1.2
+当前版本 v0.1.6
 
-2013年4月30日
+2013年8月22日
 
 ## v0.1.1
  * Feinit.js添加事件 √
@@ -27,6 +27,7 @@ FEinit ToDoList
  * css      √
  * js       √
  * build    √   
+ * smushit 
  * tar
  * live
  * watch
