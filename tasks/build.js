@@ -105,7 +105,6 @@ function writeFile(filepath, content) {
         log.note('成功build：' + filepath);
     }
 
-
 }
 
 var task = module.exports = new Task();
