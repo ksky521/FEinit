@@ -1,41 +1,37 @@
 @echo off
-color 03
-REM =====================================
-REM    FEinit 压缩
-REM
-REM =====================================
 SETLOCAL ENABLEEXTENSIONS
  
-echo.
-echo Uglify-js v1.2.6
- 
-REM 过滤文件后缀，只压缩js和css
-if "%~x1" NEQ ".js" (
-    echo.
-    echo **** 请选择JS文件
-    echo.
-    goto End
+REM 过滤文件后缀，只build html文件
+if "%~x1" NEQ ".jpg" (
+    if "%~x1" NEQ ".png" (
+        if "%~x1" NEQ ".css" (
+            if "%~x1" NEQ ".gif" (
+                if "%~x1" NEQ ".jpeg" (
+                    if "%~x1" NEQ ".webp" (
+                        if "%~x1" NEQ ".ico" (
+                            echo.
+                            echo **** 请选择图片或者css文件
+                            echo.
+                            goto End
+                        )
+                    )
+                )
+            )
+        )
+        
+    )
 )
- 
-REM 检查NODE_PATH
-if "%NODE_PATH%" == "" goto NoNodePath
-if not exist "%NODE_PATH%\node.exe" goto NoNodePath
 
+if "%~x1" NEQ ".css" (
+    "node.exe" "%~dp0fe" base64 --nosize "%~n1%~x1"  
+) else (
+    "node.exe" "%~dp0fe" base64 --nosize "%~n1%~x1"  
+)
+
+   
  
-copy %~n1%~x1 %~n1.dev%~x1
-set RESULT_FILE=%~n1%~x1
- 
-REM 调用Uglify-js压缩文件
-"%NODE_PATH%\node.exe" "%~dp0uglifyjs"  --ascii -nc "%~n1.dev%~x1" > "%RESULT_FILE%"
-echo.
-echo **** ~O(∩_∩)O~ 压缩成功 ****
-echo.
 goto End 
  
-:NoNodePath
-echo.
-echo **** 请先安装nodejs并设置NODE_PATH环境变量 ****
-echo.
  
 :End
 ENDLOCAL

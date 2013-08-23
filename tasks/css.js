@@ -27,7 +27,7 @@ var options = {
 Task.prototype.help = function(log) {
     log.log('>>> fe css task 帮助');
     log.log('    * [fe css a.css b.css -o ab.css](yellow) 将a和b合并为ab');
-    log.log('    * [fe css -u a.css b.css -o ab.css](yellow) 将a和b合并为ab，但是不美化');
+    log.log('    * [fe css -b a.css b.css -o ab.css](yellow) 将a和b合并为ab，格式化');
     log.log('    * [fe css -c a.css b.css -o ab.min.css](yellow) 合并成ab并压缩');
     log.log(' [PS](green) 1.会自动解析文件中import的语法并合并');
     log.log('    2.默认会美化，使用-u参数来取消美化');
@@ -63,7 +63,7 @@ Task.prototype.start = function() {
         });
 
         dist = dist.concat(files);
-        
+
         var content = dist.map(function(v) {
             var content = gFile.read(v);
             content = CleanCSS._inlineImports(content, {
@@ -73,17 +73,16 @@ Task.prototype.start = function() {
             return content;
         }).join('\n');
 
-        if (that.options.c || (!(that.options.unbeautify || that.options.u) && typeof that.options.c === 'undefined')) {
+        if (that.options.c) {
             //压缩
+
             content = minifyCSS(content, options);
         } else {
             //charset往前走
             content = moveCharset(content);
-            if (that.options.unbeautify || that.options.u) {
-
-            } else {
+            if (that.options.beautify || that.options.b) {
                 content = cssbeautify(content);
-            }
+            } 
         }
 
         if (this.dist.length === 1 && this.dest === '') {
