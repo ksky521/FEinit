@@ -29,7 +29,7 @@ FEinit ToDoList
  * build    √   
  * imgmin   √
  * tar
- * base64
+ * base64   √
  * live
  * watch
  * clean
