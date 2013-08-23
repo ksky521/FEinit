@@ -2,7 +2,7 @@ FEinit beta版
 ======
 ![FEinit帮助界面](./pic/feinit.png "FEinit帮助界面")
 
-基于Grunt和compass的前端项目工具集，因为是在windows系统开发，所以目前仅适合 __windows__ 系统。
+基于前端项目工具集，因为是在windows系统开发，所以目前仅适合 __windows__ 系统。
 
 主要功能：
  * 提供前端项目中常用的工具集
@@ -81,9 +81,9 @@ fe concat -h
 ##### 基本语法
 
 ```shell
-filename [files..] to dest
+filename [files..] -o dest
 ## 举例
-fe concat file1 file2 file3 to concat
+fe concat file1 file2 file3 -o concat
 ```
 
 ### fe css
@@ -93,10 +93,10 @@ fe concat file1 file2 file3 to concat
 ##### 基本语法
 
 ```shell
-fe css [options] filename [folder/files..] to dest.css
+fe css [options] filename [folder/files..] -o dest.css
 ## 举例
-fe css a.css b.css to ab.css
-fe css -c a.css b.css to ab.min.css
+fe css a.css b.css -o ab.css
+fe css -c a.css b.css -o ab.min.css
 ```
 
  * 选项 
@@ -104,7 +104,7 @@ fe css -c a.css b.css to ab.min.css
    * ```-u``` 不美化，源文件输出
  * 默认
    * 合并
-   * 美化
+   * 压缩
 
 ### fe js 
 ##### 功能
@@ -113,19 +113,33 @@ fe css -c a.css b.css to ab.min.css
 ##### 基本语法
 
 ```shell
-fe js [options] filename [folder/files..] to dest.js
+fe js [options] filename [folder/files..] -o dest.js
 ## 举例
-fe js file.js file2.js to min.js
-fe js file.js file2.js to min.js --no-ascii
+fe js file.js file2.js -o min.js
+fe js file.js file2.js -o min.js --noascii
 ```
 
  * 选项 
    * ```-b``` or ```--beautify``` 美化
-   * ```--no-ascii``` 不ascii化，即不会讲中文转为 ```\uXXX``` 格式
+   * ```--noascii``` 不ascii化，即不会讲中文转为 ```\uXXX``` 格式
  * 默认
    * 压缩
    * 合并
    * ascii化
+
+
+### fe imgmin
+##### 功能
+使用yahoo smushit压缩图片
+
+##### 基本语法
+
+```shell
+fe imgmin [options] filename [folder/files..] -o dest.png
+## 举例
+fe imgmin file.png -o min.png
+fe imgmin filepath
+```
 
 
 ### fe build 
@@ -136,15 +150,15 @@ fe js file.js file2.js to min.js --no-ascii
 ##### 基本语法
 
 ```shell
-fe build [options] filename [files..] [to] [dest.html]
+fe build [options] filename [files..] [-o] [dest.html]
 ## 举例
 fe build demo.html demo2.html -b
-fe build demo.html to min.html --no-ascii
+fe build demo.html -o min.html --noascii
 ```
 
  * 选项 
    * ```-b``` or ```--beautify``` 美化
-   * ```--no-ascii``` 不ascii化，即不会讲中文转为 ```\uXXX``` 格式
+   * ```--noascii``` 不ascii化，即不会讲中文转为 ```\uXXX``` 格式
  * 默认
    * 压缩
    * ascii化
@@ -176,13 +190,13 @@ plugin开发完成后，使用：
 ## 查看帮助
 fe my-first-task -h 
 ## 执行命令
-fe my-first-task [options] [to] [destOptions] 
+fe my-first-task [options] [-o] [destOptions] 
 ```
 
 __P.S.__
  
  * plugin名称为字母和下划线(_)组成，并且不得与之前的task重名
- * 为了跟sheel自带的 ```>``` 区分，使用 ```to``` 作为输出符号
+ * 为了跟sheel自带的 ```>``` 区分，使用 ```-o``` 作为输出符号
 
 
 

@@ -1,6 +1,6 @@
 FEinit ToDoList
 =======
-当前版本 v0.1.6
+当前版本 v0.1.7
 
 2013年8月22日
 
@@ -20,17 +20,18 @@ FEinit ToDoList
  * 实现插件开发创建 √
 
 ## v0.2.0
- * 至少实现三个task √
+ * 添加默认开发环境安装，例如sass
 
 ## task list
  * concat   √
  * css      √
  * js       √
  * build    √   
- * smushit 
+ * imgmin   √
  * tar
+ * base64
  * live
  * watch
  * clean
  * sass
- * imgmin
+ * install
