@@ -1,11 +1,4 @@
  * [fe init](green)：将当前目录初始化为前端项目文件夹，需要输入项目名称等内容
- * [fe config list](green)：显示fe的config文件内容
-       [download](yellow)：是否通过下载添加grunt模块
-       [dependencies](yellow)：默认的依赖模块
-       [dirs](yellow)：目录结构
-       [files](yellow)：选择是否include之后要create的文件
-       [templates](yellow)：模板信息
- * [fe config -e](green)：编辑config文件，会调用explorer config.json
  * [fe task -l](green)：列出支持的grunt task
  * [fe template -h](green)：获取template使用帮助
  * [fe plugin new-plugin](green)：创建new-plugin的task

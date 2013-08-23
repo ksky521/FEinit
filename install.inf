@@ -9,11 +9,26 @@ AddReg=Install_AddReg
 DelReg=Uninstall_DelReg
 
 [Uninstall_DelReg]
-hkcr,"Folder\Shell\FEinit"
-hkcr,"Folder\Shell\FEinit\command"
-
+hkcr,"*\Shell\FEinit"
+hkcr,"*\Shell\ContextMenus\FEinit"
 
 [Install_AddReg]
-hkcr,"Folder\Shell\FEinit",,,"初始化FE"
-hkcr,"Folder\Shell\FEinit\command",,,"""%01%\init.cmd"" ""%%1""
+hkcr,"*\Shell\FEinit","MUIVerb",,"FEinit前端工具"
+hkcr,"*\Shell\FEinit","ExtendedSubCommandsKey",,"*\ContextMenus\FEinit"
 
+hkcr,"*\ContextMenus\FEinit\Shell\Uglifyjs",,,"压缩javascript文件"
+hkcr,"*\ContextMenus\FEinit\Shell\Uglifyjs\command",,,"""%01%\bin\js-compressor.cmd"" ""%%1"""
+hkcr,"*\ContextMenus\FEinit\Shell\Beautifyjs",,,"格式化javascript文件"
+hkcr,"*\ContextMenus\FEinit\Shell\Beautifyjs\command",,,"""%01%\bin\js-beautify.cmd"" ""%%1"""
+
+hkcr,"*\ContextMenus\FEinit\Shell\css-compressor",,,"压缩CSS文件"
+hkcr,"*\ContextMenus\FEinit\Shell\css-compressor\command",,,"""%01%\bin\css-compressor.cmd"" ""%%1"""
+
+hkcr,"*\ContextMenus\FEinit\Shell\img-smushit",,,"smushit优化图片"
+hkcr,"*\ContextMenus\FEinit\Shell\img-smushit\command",,,"""%01%\bin\img-smushit.cmd"" ""%%1"""
+
+hkcr,"*\ContextMenus\FEinit\Shell\BuildHtml",,,"Build Html"
+hkcr,"*\ContextMenus\FEinit\Shell\BuildHtml\command",,,"""%01%\bin\html-build.cmd"" ""%%1"""
+
+hkcr,"*\ContextMenus\FEinit\Shell\img-base64",,,"图片base64"
+hkcr,"*\ContextMenus\FEinit\Shell\img-base64\command",,,"""%01%\bin\img-base64.cmd"" ""%%1"""

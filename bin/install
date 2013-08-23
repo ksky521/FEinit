@@ -8,7 +8,7 @@ var root = join(__dirname, '../');
 var read = require('read');
 var colors = require('colors');
 read({
-    prompt: '[' + '?'.bold.green + '] 添加FEinit到鼠标右键 ?[Y/n]',
+    prompt: '[' + '?'.bold.green + '] 添加FEinit到鼠标右键 (windows用户支持)[Y/n]',
     default: 'n',
     timeout: 100000
 }, function(err, value) {
