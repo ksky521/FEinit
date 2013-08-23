@@ -21,6 +21,7 @@ FEinit ToDoList
 
 ## v0.2.0
  * 添加默认开发环境安装，例如sass
+ * 添加右键菜单集合
 
 ## task list
  * concat   √
