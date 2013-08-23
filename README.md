@@ -22,7 +22,7 @@ FEinit beta版
 ## 安装
 
 ```shell
-npm install http://github.com/ksky521/FEinit/tarball/master -g
+npm install feinit -g
 fe -h
 fe -v
 ```
@@ -101,7 +101,7 @@ fe css -c a.css b.css -o ab.min.css
 
  * 选项 
    * ```-c``` 压缩
-   * ```-u``` 不美化，源文件输出
+   * ```-b``` 格式化
  * 默认
    * 合并
    * 压缩
@@ -147,6 +147,7 @@ fe imgmin filepath
 将html中的引入的js和css合并到html中，支持压缩
 
 
+
 ##### 基本语法
 
 ```shell
@@ -162,6 +163,25 @@ fe build demo.html -o min.html --noascii
  * 默认
    * 压缩
    * ascii化
+
+### fe base64
+##### 功能
+base64图片，支持css内图片转base64，默认要求图片 < 4k
+
+##### 基本语法
+
+```shell
+fe base64 [options] filename [folder/files..] -o dest.png
+## 举例
+fe base64 file.png -o min.png
+fe base64 path.css -o a.css
+fe base64 path.css -o a.css --no-max-size
+```
+  
+ * 选项 
+   * ```-m``` or ```--no-max-size``` 不受4k限制
+ * 默认
+   * 图片体积大于4K不做base64处理
 
 ### 常见参数缩写
  * -h: --help     //帮助
@@ -203,10 +223,18 @@ __P.S.__
 ## 卸载
 
 ```shell
-npm uninstall -g FEinit
+npm uninstall -g feinit
 ```
 
 ## 关于作者
  * 微博：[@三水清](http://weibo.com/sanshuiqing)
  * github：[github.com/ksky521](http://github.com/ksky521)
  * 博客：[三水清](http://js8.in)
+
+## 右键菜单
+
+仅支持windows系统，安装时按照提示填写 Y 安装即可
+
+使用：需要操作的文件使用鼠标右键
+
+![FEinit右键菜单](./pic/menu.png "FEinit右键菜单")
