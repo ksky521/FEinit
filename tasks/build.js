@@ -20,7 +20,7 @@ Task.prototype.help = function() {
     log.log('    * [fe build a.html](yellow) : 将页面中js和css合并到a.min.html中');
     log.log('    * [fe build a.html -o b.html](yellow) : 将页面中js和css合并到b.html中');
     log.log('    * [fe build a.html -b](yellow) : 合并后并且美化');
-    log.log('    * [fe build a.html --no-ascii](yellow) : js中文不转成\\uXXX');
+    log.log('    * [fe build a.html --noascii](yellow) : js中文不转成\\uXXX');
     log.log('  [PS](bold.green) 只有在html中build语法正确才可以识别');
     log.log('__________________________________________________________________________');
     log.log('>>>[html中build语法](green)');
@@ -51,6 +51,7 @@ Task.prototype.start = function() {
         if (this.dest && this.dest !== this.root) {
             destFile = this.dest;
         }
+
         this.dist.forEach(function(v) {
             var filepath = v;
             var dirname = path.dirname(filepath);
@@ -63,6 +64,7 @@ Task.prototype.start = function() {
             }
             var content = getContent(filepath);
             var html = that.build(content, dirname, dest);
+
             writeFile(dest, html);
         });
     }
@@ -102,7 +104,7 @@ function writeFile(filepath, content) {
         grunt.file.write(filepath, content, {
             encoding: 'utf-8'
         });
-        log.note('成功build：' + filepath);
+        log.note('success：' + filepath);
     }
 
 }
@@ -121,7 +123,7 @@ var parse = {
             content = uglifyjs.minify(content, {
                 fromString: true,
                 output: {
-                    ascii_only: !params['no-ascii']
+                    ascii_only: !params.noascii
                 }
             }).code;
         }
@@ -151,8 +153,7 @@ var parse = {
             if (m) {
                 var url = m[1]; //url
                 if (url) {
-                    var aurl = path.relative(dir, url);
-                    aurl = join(dir, aurl);
+                    var aurl = join(dir, url);
                     if (gFile.exists(aurl)) {
                         content = fs.readFileSync(aurl, 'utf-8').toString();
 
@@ -162,11 +163,11 @@ var parse = {
                         });
 
                     } else {
-                        log.error('文件 "' + url + '" 不存在!');
+                        log.error('Source file "' + url + '" not found.');
                     }
                 }
             }
-            return content+spl;
+            return content + spl;
         });
 
         return lines.join(EOL);

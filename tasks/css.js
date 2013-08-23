@@ -26,9 +26,9 @@ var options = {
 };
 Task.prototype.help = function(log) {
     log.log('>>> fe css task 帮助');
-    log.log('    * [fe css a.css b.css to ab.css](yellow) 将a和b合并为ab');
-    log.log('    * [fe css -u a.css b.css to ab.css](yellow) 将a和b合并为ab，但是不美化');
-    log.log('    * [fe css -c a.css b.css to ab.min.css](yellow) 合并成ab并压缩');
+    log.log('    * [fe css a.css b.css -o ab.css](yellow) 将a和b合并为ab');
+    log.log('    * [fe css -u a.css b.css -o ab.css](yellow) 将a和b合并为ab，但是不美化');
+    log.log('    * [fe css -c a.css b.css -o ab.min.css](yellow) 合并成ab并压缩');
     log.log(' [PS](green) 1.会自动解析文件中import的语法并合并');
     log.log('    2.默认会美化，使用-u参数来取消美化');
 }
@@ -54,13 +54,16 @@ Task.prototype.start = function() {
             } else if (!gFile.exists(filepath)) {
                 that.warn('Source file "' + filepath + '" not found.');
                 return false;
+            } else if (!/\.css$/.test(filepath)) {
+                that.warn('Source file "' + filepath + '" not a .css file.');
+                return false;
             } else {
                 return true;
             }
         });
 
         dist = dist.concat(files);
-
+        
         var content = dist.map(function(v) {
             var content = gFile.read(v);
             content = CleanCSS._inlineImports(content, {
@@ -69,20 +72,46 @@ Task.prototype.start = function() {
             });
             return content;
         }).join('\n');
-        if (that.options.c) {
+
+        if (that.options.c || (!(that.options.unbeautify || that.options.u) && typeof that.options.c === 'undefined')) {
             //压缩
             content = minifyCSS(content, options);
         } else {
             //charset往前走
             content = moveCharset(content);
-            if (that.options['un-beautify'] || that.options.u) {
+            if (that.options.unbeautify || that.options.u) {
 
-            }else{
+            } else {
                 content = cssbeautify(content);
             }
         }
-        gFile.write(that.dest, content);
-        that.note('File "' + that.dest + '" created.');
+
+        if (this.dist.length === 1 && this.dest === '') {
+            var dist = this.dist[0];
+            var dirname = path.dirname(dist);
+
+            var extname = '.css';
+            var basename = path.basename(dist, extname);
+            var dest = basename + '.min' + extname;
+            dest = join(dirname, dest);
+
+            gFile.write(dest, content);
+            that.note('File "' + dest + '" created.');
+            return;
+        }
+
+        if (Array.isArray(that.dest) && that.dest.length > 1) {
+            console.log('result:\n', content);
+        } else {
+            var dest = that.dest;
+            if (Array.isArray(that.dest)) {
+                dest = that.dest[0];
+            }
+
+            gFile.write(dest, content);
+            that.note('File "' + dest + '" created.');
+        }
+
     }
 }
 

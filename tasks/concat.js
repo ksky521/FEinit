@@ -1,6 +1,6 @@
 /**
  * 合并任务
- * 
+ *
  */
 
 //系统模块
@@ -18,9 +18,9 @@ var grunt = require('grunt');
 
 var Task = function() {};
 util.inherits(Task, feTask);
-Task.prototype.help = function(log){
+Task.prototype.help = function(log) {
     log.log('>>> fe concat task 帮助');
-    log.log('    * [fe concat a.js b.js to dest.js](yellow) 将a.js和b.js合并为dest.js');
+    log.log('    * [fe concat a.js b.js -o dest.js](yellow) 将a.js和b.js合并为dest.js');
 }
 Task.prototype.start = function() {
     var that = this;
@@ -39,16 +39,25 @@ Task.prototype.start = function() {
         //执行自己的concat任务
         that.note('开始执行合并任务...'.yellow);
         var gFile = grunt.file;
+        var dest = [];
         var content = this.dist.filter(function(filepath) {
             if (!gFile.exists(filepath)) {
                 that.warn('Source file "' + filepath + '" not found.');
                 return false;
             } else {
+                var extname = path.extname(filepath);
+                var basename = path.basename(filepath, extname);
+                dest.push(basename);
                 return true;
             }
         }).map(gFile.read).join('\n');
-        gFile.write(that.dest, content);
-        that.note('File "' + that.dest + '" created.');
+
+        var tmp = Array.isArray(that.dest) ? that.dest.join('-') : that.dest;
+        if (tmp === '') {
+            tmp = dest.join('-');
+        }
+        gFile.write(tmp, content);
+        that.note('File "' + tmp + '" created.');
     }
 }
 

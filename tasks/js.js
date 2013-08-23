@@ -23,9 +23,9 @@ var uglifyjs = require('uglify-js');
 
 Task.prototype.help = function(log) {
     log.log('>>> fe js task 帮助');
-    log.log('    * [fe js a.js b.js to ab.min.js](yellow) 将a和b合并压缩为ab');
-    log.log('    * [fe js -b a.js b.js to ab.js](yellow) 合并成ab不压缩，会进行语法变动');
-    log.log('    * [fe js --no-ascii a.js b.js to ab.js](yellow) 中文不会转码成\\uXXX格式');
+    log.log('    * [fe js a.js b.js -o ab.min.js](yellow) 将a和b合并压缩为ab');
+    log.log('    * [fe js -b a.js b.js --output ab.js](yellow) 合并成ab不压缩，会进行语法变动');
+    log.log('    * [fe js --noascii a.js b.js -o ab.js](yellow) 中文不会转码成\\uXXX格式');
     log.log(' [PS](green) 1.使用 "-b" 参数会使用js-beautify美化');
     log.log('    2.如果单纯合并js文件请使用concat命令');
 }
@@ -39,6 +39,8 @@ Task.prototype.start = function() {
         that.note('Start js task...');
         var gFile = grunt.file;
         var files = [];
+
+
         var dist = this.dist.filter(function(filepath) {
             if (gFile.isDir(filepath)) {
                 that.note('Recurse "' + filepath + '"...');
@@ -50,7 +52,11 @@ Task.prototype.start = function() {
                 });
                 return false;
             } else if (!gFile.exists(filepath)) {
+
                 that.warn('Source file "' + filepath + '" not found.');
+                return false;
+            } else if (!/\.js$/.test(filepath)) {
+                that.warn('Source file "' + filepath + '" not a .js file.');
                 return false;
             } else {
                 return true;
@@ -60,24 +66,51 @@ Task.prototype.start = function() {
         dist = dist.concat(files);
         if (dist.length === 0) {
             that.error('No source file!');
+            return;
         }
-        var content;
+        var content = '';
         if (that.options.b || that.options.beautify) {
-            content = fs.readFileSync(dist, 'utf-8');
+            Array.isArray(dist) ? dist.forEach(function(v) {
+                content += fs.readFileSync(v, 'utf-8');
+            }) : (content = fs.readFileSync(dist, 'utf-8'));
+
             content = jsbeautify(content, {
                 indent_size: 4
             });
         } else {
             content = uglifyjs.minify(dist, {
                 output: {
-                    ascii_only: !that.options['no-ascii']
+                    ascii_only: !that.options.noascii
                 }
             }).code;
         }
 
 
-        gFile.write(that.dest, content);
-        that.note('File "' + that.dest + '" created.');
+        if (this.dist.length === 1 && this.dest === '') {
+            var dist = this.dist[0];
+            var dirname = path.dirname(dist);
+
+            var extname = '.js';
+            var basename = path.basename(dist, extname);
+            var dest = basename + '.min' + extname;
+            dest = join(dirname, dest);
+
+            gFile.write(dest, content);
+            that.note('File "' + dest + '" created.');
+            return;
+        }
+        if (Array.isArray(that.dest) && that.dest.length > 1) {
+            console.log('result:\n', content);
+        } else {
+            var dest = that.dest;
+            if (Array.isArray(that.dest)) {
+                dest = that.dest[0];
+            }
+
+            gFile.write(dest, content);
+            that.note('File "' + dest + '" created.');
+        }
+
     }
 }
 

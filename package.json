@@ -19,6 +19,7 @@
     "dependencies": {
         "grunt": "0.4.1",
         "grunt-init": "0.2.0",
+        "nopt": "1.0.10",
         "optimist": "0.6.0",
         "read": "1.0.4",
         "lodash": "1.2.0",
