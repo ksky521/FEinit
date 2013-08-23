@@ -10,19 +10,22 @@ DelReg=Uninstall_DelReg
 
 [Uninstall_DelReg]
 hkcr,"*\Shell\FEinit"
+hkcr,"*\ContextMenus\FEinit\Shell\compressor"
+hkcr,"*\ContextMenus\FEinit\Shell\img-smushit"
+hkcr,"*\ContextMenus\FEinit\Shell\beautify"
+hkcr,"*\ContextMenus\FEinit\Shell\BuildHtml"
+hkcr,"*\ContextMenus\FEinit\Shell\img-base64"
+hkcr,"*\ContextMenus\FEinit\Shell"
 hkcr,"*\Shell\ContextMenus\FEinit"
 
 [Install_AddReg]
 hkcr,"*\Shell\FEinit","MUIVerb",,"FEinit前端工具"
 hkcr,"*\Shell\FEinit","ExtendedSubCommandsKey",,"*\ContextMenus\FEinit"
 
-hkcr,"*\ContextMenus\FEinit\Shell\Uglifyjs",,,"压缩javascript文件"
-hkcr,"*\ContextMenus\FEinit\Shell\Uglifyjs\command",,,"""%01%\bin\js-compressor.cmd"" ""%%1"""
-hkcr,"*\ContextMenus\FEinit\Shell\Beautifyjs",,,"格式化javascript文件"
-hkcr,"*\ContextMenus\FEinit\Shell\Beautifyjs\command",,,"""%01%\bin\js-beautify.cmd"" ""%%1"""
-
-hkcr,"*\ContextMenus\FEinit\Shell\css-compressor",,,"压缩CSS文件"
-hkcr,"*\ContextMenus\FEinit\Shell\css-compressor\command",,,"""%01%\bin\css-compressor.cmd"" ""%%1"""
+hkcr,"*\ContextMenus\FEinit\Shell\compressor",,,"压缩js或css"
+hkcr,"*\ContextMenus\FEinit\Shell\compressor\command",,,"""%01%\bin\compressor.cmd"" ""%%1"""
+hkcr,"*\ContextMenus\FEinit\Shell\beautify",,,"格式化js或css"
+hkcr,"*\ContextMenus\FEinit\Shell\beautify\command",,,"""%01%\bin\beautify.cmd"" ""%%1"""
 
 hkcr,"*\ContextMenus\FEinit\Shell\img-smushit",,,"smushit优化图片"
 hkcr,"*\ContextMenus\FEinit\Shell\img-smushit\command",,,"""%01%\bin\img-smushit.cmd"" ""%%1"""
