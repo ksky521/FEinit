@@ -163,9 +163,9 @@ fe build demo.html -o min.html --noascii
 ##### style语法
 
 ```html
-  <!-- build:[style] -->');
-  <link rel="stylesheet" type="text/css" href="/path/to/css.css" />');
-  <!-- /build -->');
+  <!-- build:[style] -->
+  <link rel="stylesheet" type="text/css" href="/path/to/css.css" />
+  <!-- /build -->
 ```
 output
 
