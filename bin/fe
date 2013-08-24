@@ -9,6 +9,7 @@ var optimist = require('optimist')
         'l': 'list',
         'c': 'create',
         'e': 'edit',
+        's': 'size',
         'v': 'version'
     }).boolean(['v', 'h']);
 

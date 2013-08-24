@@ -70,17 +70,13 @@ Task.prototype.start = function() {
         var opts = nopt({
             help: Boolean
         }, {
-            m:'--no-max-size',
             o: '--output' //输出
         });
 
         var argv = opts.argv.cooked;
-        //破除限制最大4k参数
-        if(argv.indexOf('--no-max-size')){
-            that.options.nomaxsize = true;
-        }else{
-            that.options.nomaxsize = false;
-        }
+        //破除限制最大4k参数,this.options.size
+        that.options.size = dealSize(that.options.size);
+
         argv.splice(0, 1);
 
         var objs = {
@@ -123,7 +119,7 @@ Task.prototype.start = function() {
                     var ext = path.extname(filename);
 
                     if (ext in mediatypes) {
-                        pic2base64(abspath, dest, that.options.nomaxsize);
+                        pic2base64(abspath, dest, that.options.size);
                     }
 
                 });
@@ -139,7 +135,7 @@ Task.prototype.start = function() {
 
                 if (ext in mediatypes) {
                     //图片
-                    pic2base64(input, output, that.options.nomaxsize);
+                    pic2base64(input, output, that.options.size);
 
                 } else if (ext === '.css') {
                     //css
@@ -156,7 +152,7 @@ Task.prototype.start = function() {
                             });
                         }
 
-                    }, that.options.nomaxsize);
+                    }, that.options.size);
                 }
 
             }
@@ -166,7 +162,7 @@ Task.prototype.start = function() {
 
                 if (ext in mediatypes) {
                     //图片
-                    pic2base64(input, '', that.options.nomaxsize);
+                    pic2base64(input, '', that.options.size);
 
                 } else if (ext === '.css') {
                     //css
@@ -183,7 +179,7 @@ Task.prototype.start = function() {
                                 log.log('Success: ' + filepath);
                             });
                         }
-                    }, that.options.nomaxsize);
+                    }, that.options.size);
                 }
             });
 
@@ -192,7 +188,8 @@ Task.prototype.start = function() {
 
 };
 
-function pic2base64(filepath, dest, nomaxsize) {
+function pic2base64(filepath, dest, size) {
+
     dest = dest || join(path.dirname(filepath), 'base64.txt');
     var filename = path.basename(filepath);
     fs.stat(filepath, function(err, stat) {
@@ -200,7 +197,7 @@ function pic2base64(filepath, dest, nomaxsize) {
             log.warn(err);
             return;
         }
-        if (nomaxsize && stat.size > 4096) {
+        if (size !== 0 && stat.size > size) {
             return log.warn('Skip ' + filename + ' Exceed max size');
         }
 
@@ -214,6 +211,28 @@ function pic2base64(filepath, dest, nomaxsize) {
             log.log('Success: ' + filename);
         });
     });
+}
+
+function dealSize(size) {
+    if (typeof size === 'number') {
+
+    } else if (typeof size === 'string') {
+        var n = parseInt(size, 10);
+        size = size.replace(n, '');
+        switch (size.toUpperCase()) {
+            case 'M':
+                size = n * 1024 * 1024;
+                break;
+            case 'K':
+                size = n * 1024;
+                break;
+            default:
+                size = 4096;
+        }
+    } else {
+        size = 4096;
+    }
+    return size;
 }
 
 function base64(filepath) {
