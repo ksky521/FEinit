@@ -23,9 +23,9 @@ if "%~x1" NEQ ".jpg" (
 )
 
 if "%~x1" NEQ ".css" (
-    "node.exe" "%~dp0fe" base64 --nosize "%~n1%~x1"  
+    "node.exe" "%~dp0fe" base64 "%~n1%~x1"  
 ) else (
-    "node.exe" "%~dp0fe" base64 --nosize "%~n1%~x1"  
+    "node.exe" "%~dp0fe" base64 "%~n1%~x1"  
 )
 
    
