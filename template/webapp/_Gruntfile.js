@@ -1,17 +1,3 @@
-var JSArr = [
-    'intro',
-    'vars',
-    'loadJS',
-    'getVersion',
-    'openByIframe',
-    'getVersion',
-    'getUpdateInfo',
-    'core',
-    'outro'
-].map(function(v) {
-    return 'src/' + v+'.js';
-});
-
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -23,29 +9,44 @@ module.exports = function(grunt) {
             globals: {
                 console: true
             },
-            files: ['src/*.js']
+            files: ['js/*.js']
         },
-
-        concat: {
+        <% if (Sass=='y' || Sass=='Y') { %>
+        compass: {
+          dev: {
             options: {
-                separator: '\n'
-            },
-            dist: {
-                src: JSArr,
-                dest: 'build/<%= pkg.name %>.all.js'
+              config: 'config.rb'
             }
+          },
+          build: {
+            options: {
+              config: 'config.rb',
+              outputStyle: 'compressed',
+              cssDir: 'css/'
+            }
+          }
         },
+        <% } %>
+        // concat: {
+        //     options: {
+        //         separator: '\n'
+        //     },
+        //     dist: {
+        //         src: JSArr,
+        //         dest: '.js'
+        //     }
+        // },
         uglify: {
             options: {},
             dist: {
-                src: 'build/<%= pkg.name %>.all.js',
-                dest: 'build/<%= pkg.name %>.min.js'
+                src: 'js/*.js',
+                dest: 'js/all.min.js'
             }
         },
-        watch: {
-            files: JSArr,
-            tasks: ['concat']
-        },
+        // watch: {
+        //     files: JSArr,
+        //     tasks: ['concat']
+        // },
         compress: {
             main: {
                 options: {
@@ -53,7 +54,6 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: 'src',
                     src: ['**'],
                     filter: 'isFile'
                 }]
@@ -68,6 +68,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-compress');
 
-    grunt.registerTask('build', ['jshint', 'concat', 'uglify']);
+    grunt.registerTask('build', ['jshint', 'uglify']);
 
 };
