@@ -1,0 +1,3 @@
+[submodule "template/_sassCore"]
+	path = template/_sassCore
+	url = https://github.com/ksky521/sassCore.git
