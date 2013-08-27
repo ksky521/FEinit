@@ -1,19 +1,4 @@
 {
-    "download": true,
-    "dependencies": {
-        "grunt": "~0.4.1",
-        "grunt-contrib-jshint": "~0.2.0",
-        "grunt-contrib-uglify": "~0.1.2",
-        "grunt-contrib-concat": "~0.1.3",
-        "grunt-contrib-compass": "~0.1.3",
-        "grunt-contrib-watch": "~0.3.1",
-        "grunt-contrib-compress": "~0.5.0"
-    },
-    "dirs": [
-        "src/img/pic",
-        "src/js",
-        "src/css"
-    ],
     "files": {
         "Sass": [
             "config.rb",
@@ -28,6 +13,29 @@
         "Zepto": [
             "src/js/zepto.js"
         ]
+    },
+    "build_in_templates": {
+        "webapp": {
+            "name": "webapp",
+            "directory": "webapp",
+            "description": "A webapp template.",
+            "withGrunt": true,
+            "withCompass": false
+        },
+        "js-framework": {
+            "name": "js-framework",
+            "directory": "js-framework",
+            "description": "A js-framework template.",
+            "withGrunt": true,
+            "withCompass": false
+        },
+        "node-module": {
+            "name": "node-module",
+            "directory": "node-module",
+            "description": "A node-module template.",
+            "withGrunt": true,
+            "withCompass": false
+        }
     },
     "templates": {
         "demo": {

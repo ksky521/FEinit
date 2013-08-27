@@ -9,7 +9,7 @@ module.exports = function(grunt) {
             globals: {
                 console: true
             },
-            files: ['js/*.js']
+            files: ['src/js/*.js']
         },
         <% if (Sass=='y' || Sass=='Y') { %>
         compass: {
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
             options: {
               config: 'config.rb',
               outputStyle: 'compressed',
-              cssDir: 'css/'
+              cssDir: 'src/css/'
             }
           }
         },
@@ -39,8 +39,8 @@ module.exports = function(grunt) {
         uglify: {
             options: {},
             dist: {
-                src: 'js/*.js',
-                dest: 'js/all.min.js'
+                src: 'src/js/*.js',
+                dest: 'src/js/all.min.js'
             }
         },
         // watch: {
