@@ -135,6 +135,7 @@ Task.prototype.start = function() {
 
                 if (ext in mediatypes) {
                     //图片
+                    
                     pic2base64(input, output, that.options.size);
 
                 } else if (ext === '.css') {
@@ -162,7 +163,7 @@ Task.prototype.start = function() {
 
                 if (ext in mediatypes) {
                     //图片
-                    pic2base64(input, '', that.options.size);
+                    pic2base64(filepath, '', that.options.size);
 
                 } else if (ext === '.css') {
                     //css
