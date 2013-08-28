@@ -21,7 +21,6 @@
             "description": "A webapp template.",
             "withGrunt": true,
             "withCompass": true
-
         },
         "js-framework": {
             "name": "js-framework",
