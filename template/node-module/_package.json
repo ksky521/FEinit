@@ -6,14 +6,7 @@
         "name": "<%= userName %>",
         "email": "<%= userEmail %>"
     },
-    "bin": {
-        "fe": "bin/fe"
-    },
     "dependencies": {
         "optimist": "~0.6.0"
-    },
-    "scripts": {
-        "install": "node ./bin/install",
-        "uninstall": "node ./bin/uninstall"
-    }
+    }   
 }
