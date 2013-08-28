@@ -1,8 +1,11 @@
 {
-    "name": "openapp",
-    "description": "javascript调起框",
-    "author": "Theowang",
-    "email": "ksky521@gmail.com",
+    "name": "<%= name %>",
+    "version": "0.1.0",
+    "description": "<%= description %>",
+    "author": {
+        "name": "<%= userName %>",
+        "email": "<%= userEmail %>"
+    },
     "devDependencies": {
         "grunt": "~0.4.1",
         "grunt-contrib-jshint": "~0.2.0",

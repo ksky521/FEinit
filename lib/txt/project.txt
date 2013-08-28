@@ -1,3 +1,1 @@
-请回答下面项目相关的问题：
-[?] 需要jQuery吗 [y/n] (Y) | jQuery
-[?] 需要Zepto吗 [y/n] (n) | Zepto
+[?] 要使用Compass/Sass吗 [y/n] (Y) | Sass

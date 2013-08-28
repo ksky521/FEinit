@@ -20,7 +20,8 @@
             "directory": "webapp",
             "description": "A webapp template.",
             "withGrunt": true,
-            "withCompass": false
+            "withCompass": true
+
         },
         "js-framework": {
             "name": "js-framework",
