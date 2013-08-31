@@ -125,10 +125,22 @@ fe js file.js file2.js -o min.js --noascii
    * 合并
    * ascii化
 
+### fe imagemin
+##### 功能
+使用imagemin压缩图片
+
+##### 基本语法
+
+```shell
+fe imagemin [options] filename [folder/files..] -o dest.png
+## 举例
+fe imagemin file.png -o min.png
+fe imagemin filepath
+```
 
 ### fe imgmin
 ##### 功能
-使用yahoo smushit压缩图片
+使用yahoo smushit压缩图片，不过国内环境经常连接超时
 
 ##### 基本语法
 

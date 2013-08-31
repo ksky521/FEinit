@@ -1,6 +1,6 @@
 /**
- * smushit图片压缩
- * fe imgmin file1 file2 [-c压缩]
+ * 使用imagemin图片压缩
+ * fe imagemin file1 file2 [-o压缩]
  */
 
 //系统模块
@@ -21,15 +21,15 @@ var Task = function() {};
 util.inherits(Task, feTask);
 
 //task依赖模块
-var smushit = require('node-smushit');
+var imagemin = require('imagemin');
 var options = {
     report: false
 };
 Task.prototype.help = function(log) {
-    log.log('>>> fe imgmin task 帮助');
-    log.log('    * [fe imgmin file1 file2](yellow) 压缩并覆盖');
-    log.log('    * [fe imgmin file.jpg -o file.out.jpg](yellow) 将file压缩为file.out');
-    log.log('    * [fe imgmin filepath](yellow) 压缩filepath所有图片');
+    log.log('>>> fe imagemin task 帮助');
+    log.log('    * [fe imagemin file1 file2](yellow) 压缩并覆盖');
+    log.log('    * [fe imagemin file.jpg -o file.out.jpg](yellow) 将file压缩为file.out');
+    log.log('    * [fe imagemin filepath](yellow) 压缩filepath所有图片');
 }
 Task.prototype.start = function() {
     var that = this;
@@ -80,30 +80,18 @@ Task.prototype.start = function() {
             return false;
         }
         if (dir.length) {
-            smushit.smushit(dir, {
-                onComplete: function() {
-                    that.note('File "' + dir.join(',') + '" created.');
-                }
-            });
+            imagemin(dir);
         }
 
         if (inputs.length === outputs.length) {
             while (inputs.length) {
                 var input = inputs.shift(),
                     output = outputs.shift();
-                smushit.smushit(input, {
-                    output: output,
-                    onComplete: function(reports) {
-                        that.note('Success saving!');
-                    }
-                });
+                imagemin(input, output);
             }
         } else {
-            smushit.smushit(inputs, {
-                onComplete: function() {
-                    that.note('Success saving!');
-                }
-            });
+
+            imagemin(inputs);
         }
 
     }
