@@ -140,7 +140,7 @@ fe imagemin filepath
 
 ### fe imgmin
 ##### 功能
-使用yahoo smushit压缩图片，不过国内环境经常连接超时
+使用yahoo smushit压缩图片，压缩率高，但是国内环境经常连接超时
 
 ##### 基本语法
 
