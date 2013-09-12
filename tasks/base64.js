@@ -9,6 +9,7 @@ var join = path.join;
 var fs = require('fs');
 var util = require('util');
 var exec = require('child_process').exec;
+var win32 = process.platform === 'win32';
 
 var root = join(__dirname, '../');
 var name = 'base64';
@@ -41,8 +42,7 @@ Task.prototype.help = function() {
     log.log('    * [fe base64 a.png](yellow) 将图片base64 输出到屏幕');
     log.log('    * [fe base64 path/to/jpg -o a.txt](yellow) 将图片路径输出到a.txt');
     log.log('    * [fe base64 a.css -o a-base.css](yellow) 将a.css中<4K图片替换');
-    log.log('    * [fe base64 --no-max-size path.png](yellow) 不受4K限制');
-    log.log('    * [fe base64 -m path.png](yellow) 不受4K限制');
+    log.log('    * [fe base64 -s 4M path.png](yellow) 图片受4M限制');
 };
 var imgExtensions = ['bmp', 'gif', 'jpe', 'jpg', 'jpeg', 'png', 'tif', 'tiff'];
 var cssExtensions = ['css'];
@@ -70,6 +70,7 @@ Task.prototype.start = function() {
         var opts = nopt({
             help: Boolean
         }, {
+            e: '--explorer', //图片打开浏览器显示base64
             o: '--output' //输出
         });
 
@@ -78,19 +79,25 @@ Task.prototype.start = function() {
         that.options.size = dealSize(that.options.size);
 
         argv.splice(0, 1);
-
         var objs = {
             input: [],
             output: [],
             dir: []
-        }, t = 'input';
+        }, t = 'input',
+            isExplorer = false,
+            htmlData = [];
 
         for (var i = 0, len = argv.length; i < len; i++) {
             var filepath = argv[i];
             if (filepath === '--output') {
                 t = 'output';
                 continue;
+            } else if (filepath === '--explorer') {
+                //图片打开浏览器显示base64
+                isExplorer = true;
+                continue;
             }
+
             if (t === 'output') {
                 objs[t].push(filepath);
                 continue;
@@ -115,13 +122,16 @@ Task.prototype.start = function() {
             //认为是图片路径
             dir.forEach(function(v) {
                 var dest = join(v, 'base64.txt');
+
                 gFile.recurse(v, function(abspath, rootdir, subdir, filename) {
                     var ext = path.extname(filename);
 
                     if (ext in mediatypes) {
-                        pic2base64(abspath, dest, that.options.size);
+                        htmlData.push({
+                            src: path.normalize(abspath),
+                            base64: pic2base64(abspath, dest, that.options.size)
+                        });
                     }
-
                 });
             });
 
@@ -135,8 +145,10 @@ Task.prototype.start = function() {
 
                 if (ext in mediatypes) {
                     //图片
-                    
-                    pic2base64(input, output, that.options.size);
+                    htmlData.push({
+                        src: path.normalize(input),
+                        base64: pic2base64(input, output, that.options.size)
+                    });
 
                 } else if (ext === '.css') {
                     //css
@@ -163,7 +175,10 @@ Task.prototype.start = function() {
 
                 if (ext in mediatypes) {
                     //图片
-                    pic2base64(filepath, '', that.options.size);
+                    htmlData.push({
+                        src: path.normalize(filepath),
+                        base64: pic2base64(filepath, '', that.options.size)
+                    });
 
                 } else if (ext === '.css') {
                     //css
@@ -185,6 +200,26 @@ Task.prototype.start = function() {
             });
 
         }
+        if (isExplorer && win32) {
+            var template = fs.readFileSync(path.join(root, './template/base64.html')).toString();
+            var json = require(path.join(root, 'package.json'));
+            var html = grunt.template.process(template, {
+                data: {
+                    version: json.version,
+                    base64Data: htmlData
+                }
+            });
+            var tempPath = path.join(process.env.TEMP, 'fe_base64_' + Date.now() + '.htm');
+            fs.writeFile(tempPath, html, function(err) {
+                if (err) {
+                    log.warn(err);
+                    return;
+                }
+                exec('start ' + tempPath);
+            });
+
+        }
+        htmlData = null;
     }
 
 };
@@ -193,25 +228,21 @@ function pic2base64(filepath, dest, size) {
 
     dest = dest || join(path.dirname(filepath), 'base64.txt');
     var filename = path.basename(filepath);
-    fs.stat(filepath, function(err, stat) {
+    var stat = fs.statSync(filepath);
+    if (size !== 0 && stat.size > size) {
+        return log.warn('Skip ' + filename + ' Exceed max size');
+    }
+    var b64 = base64(filepath);
+    var content = filename + ': ' + b64 + '\n';
+
+    fs.appendFile(dest, content, function(err) {
         if (err) {
             log.warn(err);
             return;
         }
-        if (size !== 0 && stat.size > size) {
-            return log.warn('Skip ' + filename + ' Exceed max size');
-        }
-
-        var content = filename + ': ' + base64(filepath) + '\n';
-
-        fs.appendFile(dest, content, function(err) {
-            if (err) {
-                log.warn(err);
-                return;
-            }
-            log.log('Success: ' + filename);
-        });
+        log.log('Success: ' + filename);
     });
+    return b64;
 }
 
 function dealSize(size) {
