@@ -1,7 +1,6 @@
 /**
  * 图片base64
  * 支持css文件
- * 只压缩<4k
  */
 //系统模块
 var path = require('path');
@@ -77,7 +76,6 @@ Task.prototype.start = function() {
         var argv = opts.argv.cooked;
         //破除限制最大4k参数,this.options.size
         that.options.size = dealSize(that.options.size);
-
         argv.splice(0, 1);
         var objs = {
             input: [],
@@ -128,7 +126,7 @@ Task.prototype.start = function() {
 
                     if (ext in mediatypes) {
                         htmlData.push({
-                            src: path.normalize(abspath),
+                            src: path.normalize(path.relative('A:\\', abspath)),
                             base64: pic2base64(abspath, dest, that.options.size)
                         });
                     }
@@ -146,7 +144,7 @@ Task.prototype.start = function() {
                 if (ext in mediatypes) {
                     //图片
                     htmlData.push({
-                        src: path.normalize(input),
+                        src: path.normalize(path.relative('A:\\', input)),
                         base64: pic2base64(input, output, that.options.size)
                     });
 
@@ -176,7 +174,7 @@ Task.prototype.start = function() {
                 if (ext in mediatypes) {
                     //图片
                     htmlData.push({
-                        src: path.normalize(filepath),
+                        src: path.normalize(path.relative('A:\\', filepath)),
                         base64: pic2base64(filepath, '', that.options.size)
                     });
 

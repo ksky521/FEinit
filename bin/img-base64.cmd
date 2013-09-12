@@ -23,9 +23,10 @@ if "%~x1" NEQ ".jpg" (
 )
 
 if "%~x1" NEQ ".css" (
-    "node.exe" "%~dp0fe" base64 "%~n1%~x1"  
+    "node.exe" "%~dp0fe" base64 -e -s 4M "%~n1%~x1"
+    goto EXIT
 ) else (
-    "node.exe" "%~dp0fe" base64 "%~n1%~x1" -e
+    "node.exe" "%~dp0fe" base64 "%~n1%~x1" 
 )
 
    
@@ -36,3 +37,5 @@ goto End
 :End
 ENDLOCAL
 pause
+
+:EXIT
