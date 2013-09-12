@@ -1,6 +1,6 @@
 {
     "name": "feinit",
-    "version": "0.2.5",
+    "version": "0.2.6",
     "description": "A toolkit for Front-end developer",
     "author": {
         "name": "Theo Wang",
@@ -16,6 +16,13 @@
     "bin": {
         "fe": "bin/fe"
     },
+    "keywords": [
+        "fe",
+        "feinit",
+        "kit",
+        "compressor",
+        "build"
+    ],
     "dependencies": {
         "grunt": "0.4.1",
         "grunt-init": "0.2.0",
