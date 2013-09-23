@@ -9,5 +9,22 @@
     "undef": true,
     "unused": true,
     "boss": true,
-    "eqnull": true
+    "eqnull": true,
+    "expr":true,
+    "globals": {
+        "jQuery": true,
+        "clearInterval": true,
+        "clearTimeout": true,
+        "document": true,
+        "history": true,
+        "Image": true,
+        "location": true,
+        "navigator": true,
+        "parent": true,
+        "screen": true,
+        "setInterval": true,
+        "setTimeout": true,
+        "window": true,
+        "XMLHttpRequest": true
+    }
 }
