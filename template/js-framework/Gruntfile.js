@@ -39,7 +39,9 @@ module.exports = function(grunt) {
                             var count = 1;
                             var filename = filepath.split('/').reverse()[0];
                             arr = arr.map(function(line) {
-                                line = '/* L ' + count + ' @' + filename + ' */' + line;
+                                if(!/^\s?(\*|\/\*)/.test(line)){
+                                    line = '/* L ' + count + ' @' + filename + ' */' + line;
+                                }
                                 count++;
                                 return line;
                             });
