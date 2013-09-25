@@ -1,6 +1,6 @@
 {
     "name": "feinit",
-    "version": "0.2.6",
+    "version": "0.2.7",
     "description": "A toolkit for Front-end developer",
     "author": {
         "name": "Theo Wang",
@@ -31,12 +31,12 @@
         "read": "1.0.4",
         "lodash": "~1.2.0",
         "findup-sync": "0.1.2",
-        "colors": "~0.6.0-1",
-        "clean-css": "~1.0.2",
-        "js-beautify": "~1.3.2",
-        "uglify-js": "~2.2.5",
-        "node-smushit": "~0.5.1",
-        "imagemin": "~0.1.1"
+        "colors": ">=0.6.0-1",
+        "clean-css": ">=1.0.2",
+        "js-beautify": ">=1.3.2",
+        "uglify-js": ">=2.2.5",
+        "node-smushit": ">=0.5.1",
+        "imagemin": ">=0.1.1"
     },
     "scripts": {
         "install": "node ./bin/install",
