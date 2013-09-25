@@ -32,21 +32,36 @@ module.exports = function(grunt) {
         //         separator: grunt.util.linefeed,
         //         process: function(str, filepath) {
 
-        //                 if (/(.css|.js)$/.test(filepath)) {
-        //                     var arr = str.split(/\r\n|\n/g);
-        //                     var count = 1;
-        //                     var filename = filepath.split('/').reverse()[0];
-        //                     arr = arr.map(function(line) {
-        //                         if(!/^\s?(\*|\/\*)/.test(line)){
-        //                             line = '/* L ' + count + ' @' + filename + ' */' + line;
-        //                         }
-        //                         count++;
-        //                         return line;
-        //                     });
-        //                     str = arr.join(grunt.util.linefeed);
-        //                 }
+        //             if (/(.css|.js)$/.test(filepath)) {
+        //                 var lines = str.split(/\r\n|\n/g);
+        //                 var count = 0;
+        //                 var filename = filepath.split('/').reverse()[0];
+        //                 var regStart = /^\s?(\*|\/\*)/,
+        //                     regEnd = /\*\/\s?$/;
+        //                 var tag;
+        //                 lines = lines.map(function(l) {
+        //                     count++;
+
+        //                     var tagStart = regStart.test(l),
+        //                         tagEnd = regEnd.test(l);
+
+        //                     if (tagStart) {
+        //                         tag = true;
+        //                     }
+
+        //                     if (!tag && !tagEnd) {
+        //                         l = '/* L ' + count + ' @' + filename + ' */' + l;
+        //                     }
+        //                     // switch back tag flag when endbuild
+        //                     if (tag && tagEnd) {
+        //                         tag = false;
+        //                     }
+        //                     return l;
+        //                 });
+        //                 str = lines.join(grunt.util.linefeed);
         //                 return str;
         //             }
+        //         }
         //     },
         //     dist: {
         //         src: JSArr,
