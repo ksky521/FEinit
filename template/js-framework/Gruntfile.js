@@ -31,14 +31,44 @@ module.exports = function(grunt) {
         concat: {
             dist: {
                 options: {
-                    separator: '\n'
+                    separator: grunt.util.linefeed,
+                    process: function(str, filepath) {
+
+                        if (/(.css|.js)$/.test(filepath)) {
+                            var arr = str.split(/\r\n|\n/g);
+                            var count = 1;
+                            var filename = filepath.split('/').reverse()[0];
+                            arr = arr.map(function(line) {
+                                line = '/* L ' + count + ' @' + filename + ' */' + line;
+                                count++;
+                                return line;
+                            });
+                            str = arr.join(grunt.util.linefeed);
+                        }
+                        return str;
+                    }
                 },
                 src: concatArr,
                 dest: 'build/<%= pkg.name %>.<%= pkg.version %>.js'
             },
             dev: {
                 options: {
-                    separator: '\n'
+                    separator: grunt.util.linefeed,
+                    process: function(str, filepath) {
+
+                        if (/(.css|.js)$/.test(filepath)) {
+                            var arr = str.split(/\r\n|\n/g);
+                            var count = 1;
+                            var filename = filepath.split('/').reverse()[0];
+                            arr = arr.map(function(line) {
+                                line = '/* L ' + count + ' @' + filename + ' */' + line;
+                                count++;
+                                return line;
+                            });
+                            str = arr.join(grunt.util.linefeed);
+                        }
+                        return str;
+                    }
                 },
                 src: concatArr,
                 dest: 'tmp/<%= pkg.name %>.js'
