@@ -67,6 +67,7 @@ Task.prototype.start = function() {
         var content = dist.map(function(v) {
             var content = gFile.read(v);
             content = CleanCSS._inlineImports(content, {
+                processImport: true,
                 root: that.root || process.cwd(),
                 relativeTo: path.relative(that.root, path.dirname(v))
             });
@@ -82,7 +83,7 @@ Task.prototype.start = function() {
             content = moveCharset(content);
             if (that.options.beautify || that.options.b) {
                 content = cssbeautify(content);
-            } 
+            }
         }
 
         if (this.dist.length === 1 && this.dest === '') {
